@@ -1,4 +1,9 @@
 configVersion: 1.0.0
+management:
+  docChecksum: 19a702455105dfd79ecaa72f9d73c34a
+  docVersion: "20220523"
+  speakeasyVersion: 1.57.0
+  generationVersion: 2.62.1
 generation:
   comments:
     disableComments: false
@@ -8,6 +13,6 @@ generation:
   singleTagPerOp: false
   tagNamespacingDisabled: false
 go:
-  version: 0.0.1
+  version: 1.0.0
   maxMethodParams: 0
   packageName: PokeAPI
