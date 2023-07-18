@@ -10,10 +10,45 @@ type PokeathlonStatReadRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *PokeathlonStatReadRequest) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
 type PokeathlonStatReadResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	PokeathlonStatReadDefaultTextPlainString *string
+}
+
+func (o *PokeathlonStatReadResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PokeathlonStatReadResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PokeathlonStatReadResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *PokeathlonStatReadResponse) GetPokeathlonStatReadDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PokeathlonStatReadDefaultTextPlainString
 }

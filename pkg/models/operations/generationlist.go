@@ -11,10 +11,52 @@ type GenerationListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *GenerationListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *GenerationListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type GenerationListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	GenerationListDefaultTextPlainString *string
+}
+
+func (o *GenerationListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GenerationListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GenerationListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GenerationListResponse) GetGenerationListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GenerationListDefaultTextPlainString
 }

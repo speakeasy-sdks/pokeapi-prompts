@@ -10,10 +10,45 @@ type MoveDamageClassReadRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *MoveDamageClassReadRequest) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
 type MoveDamageClassReadResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	MoveDamageClassReadDefaultTextPlainString *string
+}
+
+func (o *MoveDamageClassReadResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *MoveDamageClassReadResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *MoveDamageClassReadResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *MoveDamageClassReadResponse) GetMoveDamageClassReadDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MoveDamageClassReadDefaultTextPlainString
 }

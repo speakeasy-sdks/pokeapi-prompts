@@ -11,10 +11,52 @@ type EvolutionTriggerListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *EvolutionTriggerListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *EvolutionTriggerListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type EvolutionTriggerListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	EvolutionTriggerListDefaultTextPlainString *string
+}
+
+func (o *EvolutionTriggerListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *EvolutionTriggerListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *EvolutionTriggerListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *EvolutionTriggerListResponse) GetEvolutionTriggerListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EvolutionTriggerListDefaultTextPlainString
 }

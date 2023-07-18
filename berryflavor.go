@@ -4,6 +4,7 @@ package pokeapi
 
 import (
 	"PokeAPI/pkg/models/operations"
+	"PokeAPI/pkg/models/sdkerrors"
 	"PokeAPI/pkg/utils"
 	"bytes"
 	"context"
@@ -68,6 +69,8 @@ func (s *berryFlavor) BerryFlavorList(ctx context.Context, request operations.Be
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.BerryFlavorListDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -118,6 +121,8 @@ func (s *berryFlavor) BerryFlavorRead(ctx context.Context, request operations.Be
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.BerryFlavorReadDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

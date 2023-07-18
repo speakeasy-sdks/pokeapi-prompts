@@ -10,10 +10,45 @@ type VersionReadRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *VersionReadRequest) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
 type VersionReadResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	VersionReadDefaultTextPlainString *string
+}
+
+func (o *VersionReadResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *VersionReadResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *VersionReadResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *VersionReadResponse) GetVersionReadDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.VersionReadDefaultTextPlainString
 }

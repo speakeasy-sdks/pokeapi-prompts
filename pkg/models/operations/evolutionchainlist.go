@@ -11,10 +11,52 @@ type EvolutionChainListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *EvolutionChainListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *EvolutionChainListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type EvolutionChainListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	EvolutionChainListDefaultTextPlainString *string
+}
+
+func (o *EvolutionChainListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *EvolutionChainListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *EvolutionChainListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *EvolutionChainListResponse) GetEvolutionChainListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EvolutionChainListDefaultTextPlainString
 }

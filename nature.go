@@ -4,6 +4,7 @@ package pokeapi
 
 import (
 	"PokeAPI/pkg/models/operations"
+	"PokeAPI/pkg/models/sdkerrors"
 	"PokeAPI/pkg/utils"
 	"bytes"
 	"context"
@@ -68,6 +69,8 @@ func (s *nature) NatureList(ctx context.Context, request operations.NatureListRe
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.NatureListDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -118,6 +121,8 @@ func (s *nature) NatureRead(ctx context.Context, request operations.NatureReadRe
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.NatureReadDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

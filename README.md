@@ -10,6 +10,8 @@ go get github.com/speakeasy-sdks/pokeapi-prompts
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
+
+
 ```go
 package main
 

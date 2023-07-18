@@ -10,10 +10,45 @@ type MoveLearnMethodReadRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *MoveLearnMethodReadRequest) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
 type MoveLearnMethodReadResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	MoveLearnMethodReadDefaultTextPlainString *string
+}
+
+func (o *MoveLearnMethodReadResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *MoveLearnMethodReadResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *MoveLearnMethodReadResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *MoveLearnMethodReadResponse) GetMoveLearnMethodReadDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MoveLearnMethodReadDefaultTextPlainString
 }

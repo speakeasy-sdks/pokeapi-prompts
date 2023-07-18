@@ -11,10 +11,52 @@ type PalParkAreaListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *PalParkAreaListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *PalParkAreaListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type PalParkAreaListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	PalParkAreaListDefaultTextPlainString *string
+}
+
+func (o *PalParkAreaListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PalParkAreaListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PalParkAreaListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *PalParkAreaListResponse) GetPalParkAreaListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PalParkAreaListDefaultTextPlainString
 }

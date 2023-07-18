@@ -4,6 +4,7 @@ package pokeapi
 
 import (
 	"PokeAPI/pkg/models/operations"
+	"PokeAPI/pkg/models/sdkerrors"
 	"PokeAPI/pkg/utils"
 	"bytes"
 	"context"
@@ -68,6 +69,8 @@ func (s *evolutionChain) EvolutionChainList(ctx context.Context, request operati
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.EvolutionChainListDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -118,6 +121,8 @@ func (s *evolutionChain) EvolutionChainRead(ctx context.Context, request operati
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.EvolutionChainReadDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

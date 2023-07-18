@@ -11,10 +11,52 @@ type CharacteristicListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *CharacteristicListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *CharacteristicListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type CharacteristicListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	CharacteristicListDefaultTextPlainString *string
+}
+
+func (o *CharacteristicListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *CharacteristicListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *CharacteristicListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *CharacteristicListResponse) GetCharacteristicListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CharacteristicListDefaultTextPlainString
 }

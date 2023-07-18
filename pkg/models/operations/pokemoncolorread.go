@@ -10,10 +10,45 @@ type PokemonColorReadRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *PokemonColorReadRequest) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
 type PokemonColorReadResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	PokemonColorReadDefaultTextPlainString *string
+}
+
+func (o *PokemonColorReadResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PokemonColorReadResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PokemonColorReadResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *PokemonColorReadResponse) GetPokemonColorReadDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PokemonColorReadDefaultTextPlainString
 }

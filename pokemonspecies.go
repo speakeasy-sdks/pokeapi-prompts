@@ -4,6 +4,7 @@ package pokeapi
 
 import (
 	"PokeAPI/pkg/models/operations"
+	"PokeAPI/pkg/models/sdkerrors"
 	"PokeAPI/pkg/utils"
 	"bytes"
 	"context"
@@ -68,6 +69,8 @@ func (s *pokemonSpecies) PokemonSpeciesList(ctx context.Context, request operati
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.PokemonSpeciesListDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -118,6 +121,8 @@ func (s *pokemonSpecies) PokemonSpeciesRead(ctx context.Context, request operati
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.PokemonSpeciesReadDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

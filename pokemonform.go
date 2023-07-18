@@ -4,6 +4,7 @@ package pokeapi
 
 import (
 	"PokeAPI/pkg/models/operations"
+	"PokeAPI/pkg/models/sdkerrors"
 	"PokeAPI/pkg/utils"
 	"bytes"
 	"context"
@@ -68,6 +69,8 @@ func (s *pokemonForm) PokemonFormList(ctx context.Context, request operations.Po
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.PokemonFormListDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -118,6 +121,8 @@ func (s *pokemonForm) PokemonFormRead(ctx context.Context, request operations.Po
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.PokemonFormReadDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

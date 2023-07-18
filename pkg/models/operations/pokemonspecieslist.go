@@ -11,10 +11,52 @@ type PokemonSpeciesListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *PokemonSpeciesListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *PokemonSpeciesListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type PokemonSpeciesListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	PokemonSpeciesListDefaultTextPlainString *string
+}
+
+func (o *PokemonSpeciesListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PokemonSpeciesListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PokemonSpeciesListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *PokemonSpeciesListResponse) GetPokemonSpeciesListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PokemonSpeciesListDefaultTextPlainString
 }

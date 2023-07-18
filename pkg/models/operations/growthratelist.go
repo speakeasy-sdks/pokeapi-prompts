@@ -11,10 +11,52 @@ type GrowthRateListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *GrowthRateListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *GrowthRateListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type GrowthRateListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	GrowthRateListDefaultTextPlainString *string
+}
+
+func (o *GrowthRateListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GrowthRateListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GrowthRateListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GrowthRateListResponse) GetGrowthRateListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GrowthRateListDefaultTextPlainString
 }

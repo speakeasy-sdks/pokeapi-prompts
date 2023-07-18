@@ -11,10 +11,52 @@ type ContestEffectListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *ContestEffectListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *ContestEffectListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type ContestEffectListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	ContestEffectListDefaultTextPlainString *string
+}
+
+func (o *ContestEffectListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ContestEffectListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ContestEffectListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ContestEffectListResponse) GetContestEffectListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ContestEffectListDefaultTextPlainString
 }

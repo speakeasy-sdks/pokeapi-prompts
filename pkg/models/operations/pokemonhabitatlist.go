@@ -11,10 +11,52 @@ type PokemonHabitatListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *PokemonHabitatListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *PokemonHabitatListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type PokemonHabitatListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	PokemonHabitatListDefaultTextPlainString *string
+}
+
+func (o *PokemonHabitatListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PokemonHabitatListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PokemonHabitatListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *PokemonHabitatListResponse) GetPokemonHabitatListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PokemonHabitatListDefaultTextPlainString
 }

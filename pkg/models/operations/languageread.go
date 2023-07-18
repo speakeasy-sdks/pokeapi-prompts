@@ -10,10 +10,45 @@ type LanguageReadRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *LanguageReadRequest) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
 type LanguageReadResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	LanguageReadDefaultTextPlainString *string
+}
+
+func (o *LanguageReadResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *LanguageReadResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *LanguageReadResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *LanguageReadResponse) GetLanguageReadDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LanguageReadDefaultTextPlainString
 }

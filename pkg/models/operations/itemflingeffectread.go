@@ -10,10 +10,45 @@ type ItemFlingEffectReadRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *ItemFlingEffectReadRequest) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
 type ItemFlingEffectReadResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	ItemFlingEffectReadDefaultTextPlainString *string
+}
+
+func (o *ItemFlingEffectReadResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ItemFlingEffectReadResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ItemFlingEffectReadResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ItemFlingEffectReadResponse) GetItemFlingEffectReadDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ItemFlingEffectReadDefaultTextPlainString
 }

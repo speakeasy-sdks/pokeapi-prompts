@@ -57,6 +57,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
+// PokeAPI - PokeAPI: PokeAPI is a full RESTful API linked to an extensive database detailing everything about the Pokémon main game series.
 type PokeAPI struct {
 	Ability                 *ability
 	Berry                   *berry
@@ -153,9 +154,9 @@ func New(opts ...SDKOption) *PokeAPI {
 	sdk := &PokeAPI{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "20220523",
-			SDKVersion:        "1.0.0",
-			GenVersion:        "2.62.1",
+			OpenAPIDocVersion: "1.0.0",
+			SDKVersion:        "1.1.0",
+			GenVersion:        "2.70.0",
 		},
 	}
 	for _, opt := range opts {

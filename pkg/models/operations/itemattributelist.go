@@ -11,10 +11,52 @@ type ItemAttributeListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *ItemAttributeListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *ItemAttributeListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type ItemAttributeListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	ItemAttributeListDefaultTextPlainString *string
+}
+
+func (o *ItemAttributeListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ItemAttributeListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ItemAttributeListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ItemAttributeListResponse) GetItemAttributeListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ItemAttributeListDefaultTextPlainString
 }

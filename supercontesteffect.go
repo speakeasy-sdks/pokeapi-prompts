@@ -4,6 +4,7 @@ package pokeapi
 
 import (
 	"PokeAPI/pkg/models/operations"
+	"PokeAPI/pkg/models/sdkerrors"
 	"PokeAPI/pkg/utils"
 	"bytes"
 	"context"
@@ -68,6 +69,8 @@ func (s *superContestEffect) SuperContestEffectList(ctx context.Context, request
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.SuperContestEffectListDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -118,6 +121,8 @@ func (s *superContestEffect) SuperContestEffectRead(ctx context.Context, request
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
 			res.SuperContestEffectReadDefaultTextPlainString = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

@@ -10,10 +10,45 @@ type AbilityReadRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *AbilityReadRequest) GetID() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ID
+}
+
 type AbilityReadResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	AbilityReadDefaultTextPlainString *string
+}
+
+func (o *AbilityReadResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *AbilityReadResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *AbilityReadResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *AbilityReadResponse) GetAbilityReadDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AbilityReadDefaultTextPlainString
 }

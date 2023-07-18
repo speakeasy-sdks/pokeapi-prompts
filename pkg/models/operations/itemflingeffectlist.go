@@ -11,10 +11,52 @@ type ItemFlingEffectListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *ItemFlingEffectListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *ItemFlingEffectListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type ItemFlingEffectListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	ItemFlingEffectListDefaultTextPlainString *string
+}
+
+func (o *ItemFlingEffectListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ItemFlingEffectListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ItemFlingEffectListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *ItemFlingEffectListResponse) GetItemFlingEffectListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ItemFlingEffectListDefaultTextPlainString
 }

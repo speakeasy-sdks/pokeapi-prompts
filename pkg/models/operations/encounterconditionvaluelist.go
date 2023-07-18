@@ -11,10 +11,52 @@ type EncounterConditionValueListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *EncounterConditionValueListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *EncounterConditionValueListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type EncounterConditionValueListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	EncounterConditionValueListDefaultTextPlainString *string
+}
+
+func (o *EncounterConditionValueListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *EncounterConditionValueListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *EncounterConditionValueListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *EncounterConditionValueListResponse) GetEncounterConditionValueListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EncounterConditionValueListDefaultTextPlainString
 }

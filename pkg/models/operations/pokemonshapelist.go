@@ -11,10 +11,52 @@ type PokemonShapeListRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *PokemonShapeListRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *PokemonShapeListRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type PokemonShapeListResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Default response
 	PokemonShapeListDefaultTextPlainString *string
+}
+
+func (o *PokemonShapeListResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PokemonShapeListResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PokemonShapeListResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *PokemonShapeListResponse) GetPokemonShapeListDefaultTextPlainString() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PokemonShapeListDefaultTextPlainString
 }
