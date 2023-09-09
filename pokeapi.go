@@ -47,6 +47,7 @@ type sdkConfiguration struct {
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -57,7 +58,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// PokeAPI - PokeAPI: PokeAPI is a full RESTful API linked to an extensive database detailing everything about the Pokémon main game series.
+// PokeAPI: PokeAPI is a full RESTful API linked to an extensive database detailing everything about the Pokémon main game series.
 type PokeAPI struct {
 	Ability                 *ability
 	Berry                   *berry
@@ -149,14 +150,20 @@ func WithClient(client HTTPClient) SDKOption {
 	}
 }
 
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *PokeAPI) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
+	}
+}
+
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *PokeAPI {
 	sdk := &PokeAPI{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "1.2.0",
-			GenVersion:        "2.89.1",
+			SDKVersion:        "1.3.0",
+			GenVersion:        "2.107.3",
 		},
 	}
 	for _, opt := range opts {
