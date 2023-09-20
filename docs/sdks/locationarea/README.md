@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.LocationArea.LocationAreaList(ctx, operations.LocationAreaListRequest{
-        Limit: pokeapi.Int64(149675),
-        Offset: pokeapi.Int64(612096),
+        Limit: PokeAPI.Int64(149675),
+        Offset: PokeAPI.Int64(612096),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.LocationArea.LocationAreaRead(ctx, operations.LocationAreaReadRequest{

@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.EncounterConditionValue.EncounterConditionValueList(ctx, operations.EncounterConditionValueListRequest{
-        Limit: pokeapi.Int64(337396),
-        Offset: pokeapi.Int64(87129),
+        Limit: PokeAPI.Int64(337396),
+        Offset: PokeAPI.Int64(87129),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.EncounterConditionValue.EncounterConditionValueRead(ctx, operations.EncounterConditionValueReadRequest{

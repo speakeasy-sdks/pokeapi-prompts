@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Gender.GenderList(ctx, operations.GenderListRequest{
-        Limit: pokeapi.Int64(473608),
-        Offset: pokeapi.Int64(799159),
+        Limit: PokeAPI.Int64(473608),
+        Offset: PokeAPI.Int64(799159),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Gender.GenderRead(ctx, operations.GenderReadRequest{

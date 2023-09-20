@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.BerryFlavor.BerryFlavorList(ctx, operations.BerryFlavorListRequest{
-        Limit: pokeapi.Int64(384382),
-        Offset: pokeapi.Int64(437587),
+        Limit: PokeAPI.Int64(384382),
+        Offset: PokeAPI.Int64(437587),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.BerryFlavor.BerryFlavorRead(ctx, operations.BerryFlavorReadRequest{

@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.ItemAttribute.ItemAttributeList(ctx, operations.ItemAttributeListRequest{
-        Limit: pokeapi.Int64(537373),
-        Offset: pokeapi.Int64(944669),
+        Limit: PokeAPI.Int64(537373),
+        Offset: PokeAPI.Int64(944669),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.ItemAttribute.ItemAttributeRead(ctx, operations.ItemAttributeReadRequest{

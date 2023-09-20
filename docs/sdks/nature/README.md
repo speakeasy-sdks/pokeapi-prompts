@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Nature.NatureList(ctx, operations.NatureListRequest{
-        Limit: pokeapi.Int64(363711),
-        Offset: pokeapi.Int64(325047),
+        Limit: PokeAPI.Int64(363711),
+        Offset: PokeAPI.Int64(325047),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Nature.NatureRead(ctx, operations.NatureReadRequest{

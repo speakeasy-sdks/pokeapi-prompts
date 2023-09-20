@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.MoveTarget.MoveTargetList(ctx, operations.MoveTargetListRequest{
-        Limit: pokeapi.Int64(750686),
-        Offset: pokeapi.Int64(315428),
+        Limit: PokeAPI.Int64(750686),
+        Offset: PokeAPI.Int64(315428),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.MoveTarget.MoveTargetRead(ctx, operations.MoveTargetReadRequest{

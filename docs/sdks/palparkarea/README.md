@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.PalParkArea.PalParkAreaList(ctx, operations.PalParkAreaListRequest{
-        Limit: pokeapi.Int64(38425),
-        Offset: pokeapi.Int64(438601),
+        Limit: PokeAPI.Int64(38425),
+        Offset: PokeAPI.Int64(438601),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.PalParkArea.PalParkAreaRead(ctx, operations.PalParkAreaReadRequest{

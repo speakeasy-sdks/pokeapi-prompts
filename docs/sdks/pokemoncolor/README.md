@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.PokemonColor.PokemonColorList(ctx, operations.PokemonColorListRequest{
-        Limit: pokeapi.Int64(581850),
-        Offset: pokeapi.Int64(253291),
+        Limit: PokeAPI.Int64(581850),
+        Offset: PokeAPI.Int64(253291),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.PokemonColor.PokemonColorRead(ctx, operations.PokemonColorReadRequest{

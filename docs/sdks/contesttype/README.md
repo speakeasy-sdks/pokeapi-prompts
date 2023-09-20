@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.ContestType.ContestTypeList(ctx, operations.ContestTypeListRequest{
-        Limit: pokeapi.Int64(791725),
-        Offset: pokeapi.Int64(812169),
+        Limit: PokeAPI.Int64(791725),
+        Offset: PokeAPI.Int64(812169),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.ContestType.ContestTypeRead(ctx, operations.ContestTypeReadRequest{

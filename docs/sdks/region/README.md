@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Region.RegionList(ctx, operations.RegionListRequest{
-        Limit: pokeapi.Int64(196582),
-        Offset: pokeapi.Int64(949572),
+        Limit: PokeAPI.Int64(196582),
+        Offset: PokeAPI.Int64(949572),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Region.RegionRead(ctx, operations.RegionReadRequest{

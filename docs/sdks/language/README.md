@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Language.LanguageList(ctx, operations.LanguageListRequest{
-        Limit: pokeapi.Int64(216550),
-        Offset: pokeapi.Int64(568434),
+        Limit: PokeAPI.Int64(216550),
+        Offset: PokeAPI.Int64(568434),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Language.LanguageRead(ctx, operations.LanguageReadRequest{

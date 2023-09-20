@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.PokemonShape.PokemonShapeList(ctx, operations.PokemonShapeListRequest{
-        Limit: pokeapi.Int64(110375),
-        Offset: pokeapi.Int64(674752),
+        Limit: PokeAPI.Int64(110375),
+        Offset: PokeAPI.Int64(674752),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.PokemonShape.PokemonShapeRead(ctx, operations.PokemonShapeReadRequest{

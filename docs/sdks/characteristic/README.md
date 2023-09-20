@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Characteristic.CharacteristicList(ctx, operations.CharacteristicListRequest{
-        Limit: pokeapi.Int64(891773),
-        Offset: pokeapi.Int64(56713),
+        Limit: PokeAPI.Int64(891773),
+        Offset: PokeAPI.Int64(56713),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Characteristic.CharacteristicRead(ctx, operations.CharacteristicReadRequest{

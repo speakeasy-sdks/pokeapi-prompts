@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.EvolutionChain.EvolutionChainList(ctx, operations.EvolutionChainListRequest{
-        Limit: pokeapi.Int64(957156),
-        Offset: pokeapi.Int64(778157),
+        Limit: PokeAPI.Int64(957156),
+        Offset: PokeAPI.Int64(778157),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.EvolutionChain.EvolutionChainRead(ctx, operations.EvolutionChainReadRequest{

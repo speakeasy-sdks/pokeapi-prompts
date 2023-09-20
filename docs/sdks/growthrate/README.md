@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.GrowthRate.GrowthRateList(ctx, operations.GrowthRateListRequest{
-        Limit: pokeapi.Int64(678880),
-        Offset: pokeapi.Int64(118274),
+        Limit: PokeAPI.Int64(678880),
+        Offset: PokeAPI.Int64(118274),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.GrowthRate.GrowthRateRead(ctx, operations.GrowthRateReadRequest{

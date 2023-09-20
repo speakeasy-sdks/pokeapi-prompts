@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Stat.StatList(ctx, operations.StatListRequest{
-        Limit: pokeapi.Int64(662527),
-        Offset: pokeapi.Int64(820994),
+        Limit: PokeAPI.Int64(662527),
+        Offset: PokeAPI.Int64(820994),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Stat.StatRead(ctx, operations.StatReadRequest{

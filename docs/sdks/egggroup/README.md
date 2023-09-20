@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.EggGroup.EggGroupList(ctx, operations.EggGroupListRequest{
-        Limit: pokeapi.Int64(479977),
-        Offset: pokeapi.Int64(568045),
+        Limit: PokeAPI.Int64(479977),
+        Offset: PokeAPI.Int64(568045),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.EggGroup.EggGroupRead(ctx, operations.EggGroupReadRequest{

@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.PokemonForm.PokemonFormList(ctx, operations.PokemonFormListRequest{
-        Limit: pokeapi.Int64(466311),
-        Offset: pokeapi.Int64(474697),
+        Limit: PokeAPI.Int64(466311),
+        Offset: PokeAPI.Int64(474697),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.PokemonForm.PokemonFormRead(ctx, operations.PokemonFormReadRequest{

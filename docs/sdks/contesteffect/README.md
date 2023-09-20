@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.ContestEffect.ContestEffectList(ctx, operations.ContestEffectListRequest{
-        Limit: pokeapi.Int64(272656),
-        Offset: pokeapi.Int64(383441),
+        Limit: PokeAPI.Int64(272656),
+        Offset: PokeAPI.Int64(383441),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.ContestEffect.ContestEffectRead(ctx, operations.ContestEffectReadRequest{

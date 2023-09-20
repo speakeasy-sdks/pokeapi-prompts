@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Type.TypeList(ctx, operations.TypeListRequest{
-        Limit: pokeapi.Int64(673660),
-        Offset: pokeapi.Int64(96098),
+        Limit: PokeAPI.Int64(673660),
+        Offset: PokeAPI.Int64(96098),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.Type.TypeRead(ctx, operations.TypeReadRequest{

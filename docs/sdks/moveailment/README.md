@@ -20,12 +20,12 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.MoveAilment.MoveAilmentList(ctx, operations.MoveAilmentListRequest{
-        Limit: pokeapi.Int64(359508),
-        Offset: pokeapi.Int64(613064),
+        Limit: PokeAPI.Int64(359508),
+        Offset: PokeAPI.Int64(613064),
     })
     if err != nil {
         log.Fatal(err)
@@ -65,7 +65,7 @@ import(
 )
 
 func main() {
-    s := pokeapi.New()
+    s := PokeAPI.New()
 
     ctx := context.Background()
     res, err := s.MoveAilment.MoveAilmentRead(ctx, operations.MoveAilmentReadRequest{
