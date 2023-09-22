@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.ItemFlingEffect.ItemFlingEffectList(ctx, operations.ItemFlingEffectListRequest{
-        Limit: PokeAPI.Int64(473600),
-        Offset: PokeAPI.Int64(264555),
+        Limit: pokeapi.Int64(186332),
+        Offset: pokeapi.Int64(774234),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.ItemFlingEffect.ItemFlingEffectRead(ctx, operations.ItemFlingEffectReadRequest{
-        ID: 186332,
+        ID: 736918,
     })
     if err != nil {
         log.Fatal(err)

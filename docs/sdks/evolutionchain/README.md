@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.EvolutionChain.EvolutionChainList(ctx, operations.EvolutionChainListRequest{
-        Limit: PokeAPI.Int64(957156),
-        Offset: PokeAPI.Int64(778157),
+        Limit: pokeapi.Int64(140350),
+        Offset: pokeapi.Int64(870013),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.EvolutionChain.EvolutionChainRead(ctx, operations.EvolutionChainReadRequest{
-        ID: 140350,
+        ID: 870088,
     })
     if err != nil {
         log.Fatal(err)

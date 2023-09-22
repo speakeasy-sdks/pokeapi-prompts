@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.Berry.BerryList(ctx, operations.BerryListRequest{
-        Limit: PokeAPI.Int64(857946),
-        Offset: PokeAPI.Int64(544883),
+        Limit: pokeapi.Int64(847252),
+        Offset: pokeapi.Int64(423655),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.Berry.BerryRead(ctx, operations.BerryReadRequest{
-        ID: 847252,
+        ID: 623564,
     })
     if err != nil {
         log.Fatal(err)

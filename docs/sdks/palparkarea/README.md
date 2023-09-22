@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.PalParkArea.PalParkAreaList(ctx, operations.PalParkAreaListRequest{
-        Limit: PokeAPI.Int64(38425),
-        Offset: PokeAPI.Int64(438601),
+        Limit: pokeapi.Int64(634274),
+        Offset: pokeapi.Int64(988374),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.PalParkArea.PalParkAreaRead(ctx, operations.PalParkAreaReadRequest{
-        ID: 634274,
+        ID: 958950,
     })
     if err != nil {
         log.Fatal(err)

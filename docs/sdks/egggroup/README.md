@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.EggGroup.EggGroupList(ctx, operations.EggGroupListRequest{
-        Limit: PokeAPI.Int64(479977),
-        Offset: PokeAPI.Int64(568045),
+        Limit: pokeapi.Int64(392785),
+        Offset: pokeapi.Int64(925597),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.EggGroup.EggGroupRead(ctx, operations.EggGroupReadRequest{
-        ID: 392785,
+        ID: 836079,
     })
     if err != nil {
         log.Fatal(err)

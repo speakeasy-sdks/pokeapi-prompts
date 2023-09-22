@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.ItemPocket.ItemPocketList(ctx, operations.ItemPocketListRequest{
-        Limit: PokeAPI.Int64(774234),
-        Offset: PokeAPI.Int64(736918),
+        Limit: pokeapi.Int64(456150),
+        Offset: pokeapi.Int64(216550),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.ItemPocket.ItemPocketRead(ctx, operations.ItemPocketReadRequest{
-        ID: 456150,
+        ID: 568434,
     })
     if err != nil {
         log.Fatal(err)

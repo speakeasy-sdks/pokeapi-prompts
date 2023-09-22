@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.Characteristic.CharacteristicList(ctx, operations.CharacteristicListRequest{
-        Limit: PokeAPI.Int64(891773),
-        Offset: PokeAPI.Int64(56713),
+        Limit: pokeapi.Int64(963663),
+        Offset: pokeapi.Int64(272656),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.Characteristic.CharacteristicRead(ctx, operations.CharacteristicReadRequest{
-        ID: 963663,
+        ID: 383441,
     })
     if err != nil {
         log.Fatal(err)

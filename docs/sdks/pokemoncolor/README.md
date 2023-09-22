@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.PokemonColor.PokemonColorList(ctx, operations.PokemonColorListRequest{
-        Limit: PokeAPI.Int64(581850),
-        Offset: PokeAPI.Int64(253291),
+        Limit: pokeapi.Int64(414369),
+        Offset: pokeapi.Int64(466311),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.PokemonColor.PokemonColorRead(ctx, operations.PokemonColorReadRequest{
-        ID: 414369,
+        ID: 474697,
     })
     if err != nil {
         log.Fatal(err)

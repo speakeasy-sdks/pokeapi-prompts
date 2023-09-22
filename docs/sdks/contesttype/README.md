@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.ContestType.ContestTypeList(ctx, operations.ContestTypeListRequest{
-        Limit: PokeAPI.Int64(791725),
-        Offset: PokeAPI.Int64(812169),
+        Limit: pokeapi.Int64(528895),
+        Offset: pokeapi.Int64(479977),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.ContestType.ContestTypeRead(ctx, operations.ContestTypeReadRequest{
-        ID: 528895,
+        ID: 568045,
     })
     if err != nil {
         log.Fatal(err)

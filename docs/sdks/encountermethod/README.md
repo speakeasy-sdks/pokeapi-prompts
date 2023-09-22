@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.EncounterMethod.EncounterMethodList(ctx, operations.EncounterMethodListRequest{
-        Limit: PokeAPI.Int64(20218),
-        Offset: PokeAPI.Int64(368241),
+        Limit: pokeapi.Int64(832620),
+        Offset: pokeapi.Int64(957156),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.EncounterMethod.EncounterMethodRead(ctx, operations.EncounterMethodReadRequest{
-        ID: 832620,
+        ID: 778157,
     })
     if err != nil {
         log.Fatal(err)

@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.Location.LocationList(ctx, operations.LocationListRequest{
-        Limit: PokeAPI.Int64(18789),
-        Offset: PokeAPI.Int64(324141),
+        Limit: pokeapi.Int64(617636),
+        Offset: pokeapi.Int64(149675),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.Location.LocationRead(ctx, operations.LocationReadRequest{
-        ID: 617636,
+        ID: 612096,
     })
     if err != nil {
         log.Fatal(err)

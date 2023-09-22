@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.PokemonForm.PokemonFormList(ctx, operations.PokemonFormListRequest{
-        Limit: PokeAPI.Int64(466311),
-        Offset: PokeAPI.Int64(474697),
+        Limit: pokeapi.Int64(244425),
+        Offset: pokeapi.Int64(623510),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.PokemonForm.PokemonFormRead(ctx, operations.PokemonFormReadRequest{
-        ID: 244425,
+        ID: 158969,
     })
     if err != nil {
         log.Fatal(err)

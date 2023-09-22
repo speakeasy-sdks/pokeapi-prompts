@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.Gender.GenderList(ctx, operations.GenderListRequest{
-        Limit: PokeAPI.Int64(473608),
-        Offset: PokeAPI.Int64(799159),
+        Limit: pokeapi.Int64(800911),
+        Offset: pokeapi.Int64(461479),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.Gender.GenderRead(ctx, operations.GenderReadRequest{
-        ID: 800911,
+        ID: 520478,
     })
     if err != nil {
         log.Fatal(err)

@@ -15,17 +15,17 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.MoveCategory.MoveCategoryList(ctx, operations.MoveCategoryListRequest{
-        Limit: PokeAPI.Int64(60225),
-        Offset: PokeAPI.Int64(969810),
+        Limit: pokeapi.Int64(666767),
+        Offset: pokeapi.Int64(653140),
     })
     if err != nil {
         log.Fatal(err)
@@ -60,16 +60,16 @@ package main
 import(
 	"context"
 	"log"
-	"PokeAPI"
+	pokeapi "PokeAPI"
 	"PokeAPI/pkg/models/operations"
 )
 
 func main() {
-    s := PokeAPI.New()
+    s := pokeapi.New()
 
     ctx := context.Background()
     res, err := s.MoveCategory.MoveCategoryRead(ctx, operations.MoveCategoryReadRequest{
-        ID: 666767,
+        ID: 670638,
     })
     if err != nil {
         log.Fatal(err)
