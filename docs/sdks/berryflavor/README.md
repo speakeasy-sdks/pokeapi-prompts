@@ -1,4 +1,5 @@
 # BerryFlavor
+(*BerryFlavor*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BerryFlavor.BerryFlavorList(ctx, operations.BerryFlavorListRequest{
-        Limit: pokeapi.Int64(297534),
-        Offset: pokeapi.Int64(891773),
+        Limit: pokeapi.Int64(187488),
+        Offset: pokeapi.Int64(739487),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BerryFlavor.BerryFlavorRead(ctx, operations.BerryFlavorReadRequest{
-        ID: 56713,
+        ID: 678235,
     })
     if err != nil {
         log.Fatal(err)

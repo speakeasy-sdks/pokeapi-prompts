@@ -1,4 +1,5 @@
 # MoveCategory
+(*MoveCategory*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.MoveCategory.MoveCategoryList(ctx, operations.MoveCategoryListRequest{
-        Limit: pokeapi.Int64(666767),
-        Offset: pokeapi.Int64(653140),
+        Limit: pokeapi.Int64(883675),
+        Offset: pokeapi.Int64(142026),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.MoveCategory.MoveCategoryRead(ctx, operations.MoveCategoryReadRequest{
-        ID: 670638,
+        ID: 69379,
     })
     if err != nil {
         log.Fatal(err)

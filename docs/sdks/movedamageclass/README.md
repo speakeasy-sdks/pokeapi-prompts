@@ -1,4 +1,5 @@
 # MoveDamageClass
+(*MoveDamageClass*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.MoveDamageClass.MoveDamageClassList(ctx, operations.MoveDamageClassListRequest{
-        Limit: pokeapi.Int64(170909),
-        Offset: pokeapi.Int64(210382),
+        Limit: pokeapi.Int64(390477),
+        Offset: pokeapi.Int64(227046),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.MoveDamageClass.MoveDamageClassRead(ctx, operations.MoveDamageClassReadRequest{
-        ID: 358152,
+        ID: 349044,
     })
     if err != nil {
         log.Fatal(err)
