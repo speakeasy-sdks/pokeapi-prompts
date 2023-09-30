@@ -1,4 +1,5 @@
 # Item
+(*Item*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Item.ItemList(ctx, operations.ItemListRequest{
-        Limit: pokeapi.Int64(143353),
-        Offset: pokeapi.Int64(537373),
+        Limit: pokeapi.Int64(915224),
+        Offset: pokeapi.Int64(579656),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Item.ItemRead(ctx, operations.ItemReadRequest{
-        ID: 944669,
+        ID: 285148,
     })
     if err != nil {
         log.Fatal(err)

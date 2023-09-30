@@ -1,4 +1,5 @@
 # Stat
+(*Stat*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Stat.StatList(ctx, operations.StatListRequest{
-        Limit: pokeapi.Int64(13571),
-        Offset: pokeapi.Int64(97101),
+        Limit: pokeapi.Int64(771174),
+        Offset: pokeapi.Int64(892933),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Stat.StatRead(ctx, operations.StatReadRequest{
-        ID: 622846,
+        ID: 160697,
     })
     if err != nil {
         log.Fatal(err)
