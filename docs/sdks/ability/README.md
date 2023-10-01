@@ -1,4 +1,5 @@
 # Ability
+(*Ability*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Ability.AbilityList(ctx, operations.AbilityListRequest{
-        Limit: pokeapi.Int64(602763),
-        Offset: pokeapi.Int64(857946),
+        Limit: pokeapi.Int64(578676),
+        Offset: pokeapi.Int64(855699),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Ability.AbilityRead(ctx, operations.AbilityReadRequest{
-        ID: 544883,
+        ID: 39493,
     })
     if err != nil {
         log.Fatal(err)

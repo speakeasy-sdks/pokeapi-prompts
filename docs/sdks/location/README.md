@@ -1,4 +1,5 @@
 # Location
+(*Location*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Location.LocationList(ctx, operations.LocationListRequest{
-        Limit: pokeapi.Int64(617636),
-        Offset: pokeapi.Int64(149675),
+        Limit: pokeapi.Int64(340294),
+        Offset: pokeapi.Int64(935166),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Location.LocationRead(ctx, operations.LocationReadRequest{
-        ID: 612096,
+        ID: 271382,
     })
     if err != nil {
         log.Fatal(err)

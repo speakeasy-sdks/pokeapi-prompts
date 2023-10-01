@@ -1,4 +1,5 @@
 # PalParkArea
+(*PalParkArea*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.PalParkArea.PalParkAreaList(ctx, operations.PalParkAreaListRequest{
-        Limit: pokeapi.Int64(634274),
-        Offset: pokeapi.Int64(988374),
+        Limit: pokeapi.Int64(450714),
+        Offset: pokeapi.Int64(409785),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.PalParkArea.PalParkAreaRead(ctx, operations.PalParkAreaReadRequest{
-        ID: 958950,
+        ID: 950036,
     })
     if err != nil {
         log.Fatal(err)

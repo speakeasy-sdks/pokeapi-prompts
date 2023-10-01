@@ -1,4 +1,5 @@
 # Machine
+(*Machine*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Machine.MachineList(ctx, operations.MachineListRequest{
-        Limit: pokeapi.Int64(943749),
-        Offset: pokeapi.Int64(902599),
+        Limit: pokeapi.Int64(445394),
+        Offset: pokeapi.Int64(68287),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Machine.MachineRead(ctx, operations.MachineReadRequest{
-        ID: 681820,
+        ID: 49768,
     })
     if err != nil {
         log.Fatal(err)
