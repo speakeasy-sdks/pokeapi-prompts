@@ -1,4 +1,5 @@
 # EncounterCondition
+(*EncounterCondition*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.EncounterCondition.EncounterConditionList(ctx, operations.EncounterConditionListRequest{
-        Limit: pokeapi.Int64(71036),
-        Offset: pokeapi.Int64(337396),
+        Limit: pokeapi.Int64(201148),
+        Offset: pokeapi.Int64(484858),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.EncounterCondition.EncounterConditionRead(ctx, operations.EncounterConditionReadRequest{
-        ID: 87129,
+        ID: 628973,
     })
     if err != nil {
         log.Fatal(err)

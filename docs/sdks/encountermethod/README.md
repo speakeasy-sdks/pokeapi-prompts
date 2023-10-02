@@ -1,4 +1,5 @@
 # EncounterMethod
+(*EncounterMethod*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.EncounterMethod.EncounterMethodList(ctx, operations.EncounterMethodListRequest{
-        Limit: pokeapi.Int64(832620),
-        Offset: pokeapi.Int64(957156),
+        Limit: pokeapi.Int64(809774),
+        Offset: pokeapi.Int64(396033),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.EncounterMethod.EncounterMethodRead(ctx, operations.EncounterMethodReadRequest{
-        ID: 778157,
+        ID: 175884,
     })
     if err != nil {
         log.Fatal(err)

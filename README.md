@@ -25,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Ability.AbilityList(ctx, operations.AbilityListRequest{
-        Limit: pokeapi.Int64(715190),
-        Offset: pokeapi.Int64(844266),
+        Limit: pokeapi.Int64(578676),
+        Offset: pokeapi.Int64(855699),
     })
     if err != nil {
         log.Fatal(err)
@@ -288,8 +288,6 @@ func main() {
 
 <!-- Start Dev Containers -->
 
-
-
 <!-- End Dev Containers -->
 
 
@@ -302,8 +300,6 @@ returned response object will have a `Next` method that can be called to pull do
 return value of `Next` is `nil`, then there are no more pages to be fetched.
 
 Here's an example of one such pagination call:
-
-
 <!-- End Pagination -->
 
 
