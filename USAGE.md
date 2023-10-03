@@ -16,8 +16,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Ability.AbilityList(ctx, operations.AbilityListRequest{
-        Limit: pokeapi.Int64(548814),
-        Offset: pokeapi.Int64(592845),
+        Limit: pokeapi.Int64(578676),
+        Offset: pokeapi.Int64(855699),
     })
     if err != nil {
         log.Fatal(err)

@@ -1,4 +1,5 @@
 # ItemPocket
+(*ItemPocket*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.ItemPocket.ItemPocketList(ctx, operations.ItemPocketListRequest{
-        Limit: pokeapi.Int64(456150),
-        Offset: pokeapi.Int64(216550),
+        Limit: pokeapi.Int64(758902),
+        Offset: pokeapi.Int64(446808),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.ItemPocket.ItemPocketRead(ctx, operations.ItemPocketReadRequest{
-        ID: 568434,
+        ID: 969735,
     })
     if err != nil {
         log.Fatal(err)

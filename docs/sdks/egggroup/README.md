@@ -1,4 +1,5 @@
 # EggGroup
+(*EggGroup*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.EggGroup.EggGroupList(ctx, operations.EggGroupListRequest{
-        Limit: pokeapi.Int64(392785),
-        Offset: pokeapi.Int64(925597),
+        Limit: pokeapi.Int64(753098),
+        Offset: pokeapi.Int64(603297),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.EggGroup.EggGroupRead(ctx, operations.EggGroupReadRequest{
-        ID: 836079,
+        ID: 573949,
     })
     if err != nil {
         log.Fatal(err)
