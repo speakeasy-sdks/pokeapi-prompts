@@ -55,3 +55,13 @@ Based on:
 - [go v1.3.2] .
 ### Releases
 - [Go v1.3.2] https://github.com/speakeasy-sdks/pokeapi-prompts/releases/tag/v1.3.2 - .
+
+## 2023-10-04 00:27:02
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.93.2 (2.144.7) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v1.4.0] .
+### Releases
+- [Go v1.4.0] https://github.com/speakeasy-sdks/pokeapi-prompts/releases/tag/v1.4.0 - .

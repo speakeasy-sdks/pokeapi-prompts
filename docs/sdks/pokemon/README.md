@@ -1,4 +1,5 @@
 # Pokemon
+(*Pokemon*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Pokemon.PokemonList(ctx, operations.PokemonListRequest{
-        Limit: pokeapi.Int64(653108),
-        Offset: pokeapi.Int64(581850),
+        Limit: pokeapi.Int64(824181),
+        Offset: pokeapi.Int64(225561),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Pokemon.PokemonRead(ctx, operations.PokemonReadRequest{
-        ID: 253291,
+        ID: 386997,
     })
     if err != nil {
         log.Fatal(err)
