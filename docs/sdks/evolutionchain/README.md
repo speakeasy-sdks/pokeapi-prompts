@@ -1,4 +1,5 @@
 # EvolutionChain
+(*EvolutionChain*)
 
 ### Available Operations
 
@@ -24,8 +25,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.EvolutionChain.EvolutionChainList(ctx, operations.EvolutionChainListRequest{
-        Limit: pokeapi.Int64(140350),
-        Offset: pokeapi.Int64(870013),
+        Limit: pokeapi.Int64(456668),
+        Offset: pokeapi.Int64(444188),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,7 +70,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.EvolutionChain.EvolutionChainRead(ctx, operations.EvolutionChainReadRequest{
-        ID: 870088,
+        ID: 663834,
     })
     if err != nil {
         log.Fatal(err)
