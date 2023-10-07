@@ -1,4 +1,5 @@
 # Region
+(*Region*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.Region.RegionList(ctx, operations.RegionListRequest{
-        Limit: pokeapi.Int64(368725),
-        Offset: pokeapi.Int64(662527),
-    })
+    res, err := s.Region.RegionList(ctx, operations.RegionListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Region.RegionRead(ctx, operations.RegionReadRequest{
-        ID: 820994,
+        ID: 521868,
     })
     if err != nil {
         log.Fatal(err)

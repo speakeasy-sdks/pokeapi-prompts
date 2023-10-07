@@ -1,4 +1,5 @@
 # VersionGroup
+(*VersionGroup*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.VersionGroup.VersionGroupList(ctx, operations.VersionGroupListRequest{
-        Limit: pokeapi.Int64(55714),
-        Offset: pokeapi.Int64(604846),
-    })
+    res, err := s.VersionGroup.VersionGroupList(ctx, operations.VersionGroupListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.VersionGroup.VersionGroupRead(ctx, operations.VersionGroupReadRequest{
-        ID: 451159,
+        ID: 436844,
     })
     if err != nil {
         log.Fatal(err)

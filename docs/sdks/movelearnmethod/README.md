@@ -1,4 +1,5 @@
 # MoveLearnMethod
+(*MoveLearnMethod*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.MoveLearnMethod.MoveLearnMethodList(ctx, operations.MoveLearnMethodListRequest{
-        Limit: pokeapi.Int64(128926),
-        Offset: pokeapi.Int64(750686),
-    })
+    res, err := s.MoveLearnMethod.MoveLearnMethodList(ctx, operations.MoveLearnMethodListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.MoveLearnMethod.MoveLearnMethodRead(ctx, operations.MoveLearnMethodReadRequest{
-        ID: 315428,
+        ID: 268867,
     })
     if err != nil {
         log.Fatal(err)

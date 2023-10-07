@@ -1,4 +1,5 @@
 # Version
+(*Version*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.Version.VersionList(ctx, operations.VersionListRequest{
-        Limit: pokeapi.Int64(468651),
-        Offset: pokeapi.Int64(509624),
-    })
+    res, err := s.Version.VersionList(ctx, operations.VersionListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Version.VersionRead(ctx, operations.VersionReadRequest{
-        ID: 976762,
+        ID: 669023,
     })
     if err != nil {
         log.Fatal(err)

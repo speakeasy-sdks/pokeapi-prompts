@@ -1,4 +1,5 @@
 # ContestEffect
+(*ContestEffect*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.ContestEffect.ContestEffectList(ctx, operations.ContestEffectListRequest{
-        Limit: pokeapi.Int64(477665),
-        Offset: pokeapi.Int64(791725),
-    })
+    res, err := s.ContestEffect.ContestEffectList(ctx, operations.ContestEffectListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.ContestEffect.ContestEffectRead(ctx, operations.ContestEffectReadRequest{
-        ID: 812169,
+        ID: 338469,
     })
     if err != nil {
         log.Fatal(err)

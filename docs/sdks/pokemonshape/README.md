@@ -1,4 +1,5 @@
 # PokemonShape
+(*PokemonShape*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.PokemonShape.PokemonShapeList(ctx, operations.PokemonShapeListRequest{
-        Limit: pokeapi.Int64(656330),
-        Offset: pokeapi.Int64(317202),
-    })
+    res, err := s.PokemonShape.PokemonShapeList(ctx, operations.PokemonShapeListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.PokemonShape.PokemonShapeRead(ctx, operations.PokemonShapeReadRequest{
-        ID: 138183,
+        ID: 914414,
     })
     if err != nil {
         log.Fatal(err)

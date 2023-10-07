@@ -1,4 +1,5 @@
 # Gender
+(*Gender*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.Gender.GenderList(ctx, operations.GenderListRequest{
-        Limit: pokeapi.Int64(800911),
-        Offset: pokeapi.Int64(461479),
-    })
+    res, err := s.Gender.GenderList(ctx, operations.GenderListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Gender.GenderRead(ctx, operations.GenderReadRequest{
-        ID: 520478,
+        ID: 403245,
     })
     if err != nil {
         log.Fatal(err)

@@ -1,4 +1,5 @@
 # GrowthRate
+(*GrowthRate*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.GrowthRate.GrowthRateList(ctx, operations.GrowthRateListRequest{
-        Limit: pokeapi.Int64(720633),
-        Offset: pokeapi.Int64(639921),
-    })
+    res, err := s.GrowthRate.GrowthRateList(ctx, operations.GrowthRateListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.GrowthRate.GrowthRateRead(ctx, operations.GrowthRateReadRequest{
-        ID: 582020,
+        ID: 260960,
     })
     if err != nil {
         log.Fatal(err)

@@ -15,10 +15,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.Ability.AbilityList(ctx, operations.AbilityListRequest{
-        Limit: pokeapi.Int64(548814),
-        Offset: pokeapi.Int64(592845),
-    })
+    res, err := s.Ability.AbilityList(ctx, operations.AbilityListRequest{})
     if err != nil {
         log.Fatal(err)
     }

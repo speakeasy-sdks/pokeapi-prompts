@@ -1,4 +1,5 @@
 # MoveAilment
+(*MoveAilment*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.MoveAilment.MoveAilmentList(ctx, operations.MoveAilmentListRequest{
-        Limit: pokeapi.Int64(437032),
-        Offset: pokeapi.Int64(902349),
-    })
+    res, err := s.MoveAilment.MoveAilmentList(ctx, operations.MoveAilmentListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.MoveAilment.MoveAilmentRead(ctx, operations.MoveAilmentReadRequest{
-        ID: 697631,
+        ID: 654813,
     })
     if err != nil {
         log.Fatal(err)

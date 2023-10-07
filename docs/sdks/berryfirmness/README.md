@@ -1,4 +1,5 @@
 # BerryFirmness
+(*BerryFirmness*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.BerryFirmness.BerryFirmnessList(ctx, operations.BerryFirmnessListRequest{
-        Limit: pokeapi.Int64(645894),
-        Offset: pokeapi.Int64(384382),
-    })
+    res, err := s.BerryFirmness.BerryFirmnessList(ctx, operations.BerryFirmnessListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BerryFirmness.BerryFirmnessRead(ctx, operations.BerryFirmnessReadRequest{
-        ID: 437587,
+        ID: 711277,
     })
     if err != nil {
         log.Fatal(err)

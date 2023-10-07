@@ -1,4 +1,5 @@
 # Type
+(*Type*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.Type.TypeList(ctx, operations.TypeListRequest{
-        Limit: pokeapi.Int64(971945),
-        Offset: pokeapi.Int64(976460),
-    })
+    res, err := s.Type.TypeList(ctx, operations.TypeListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Type.TypeRead(ctx, operations.TypeReadRequest{
-        ID: 878194,
+        ID: 792757,
     })
     if err != nil {
         log.Fatal(err)

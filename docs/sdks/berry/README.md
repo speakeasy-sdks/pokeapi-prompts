@@ -1,4 +1,5 @@
 # Berry
+(*Berry*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.Berry.BerryList(ctx, operations.BerryListRequest{
-        Limit: pokeapi.Int64(847252),
-        Offset: pokeapi.Int64(423655),
-    })
+    res, err := s.Berry.BerryList(ctx, operations.BerryListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Berry.BerryRead(ctx, operations.BerryReadRequest{
-        ID: 623564,
+        ID: 104763,
     })
     if err != nil {
         log.Fatal(err)

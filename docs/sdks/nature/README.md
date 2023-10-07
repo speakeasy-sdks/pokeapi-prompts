@@ -1,4 +1,5 @@
 # Nature
+(*Nature*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.Nature.NatureList(ctx, operations.NatureListRequest{
-        Limit: pokeapi.Int64(570197),
-        Offset: pokeapi.Int64(38425),
-    })
+    res, err := s.Nature.NatureList(ctx, operations.NatureListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Nature.NatureRead(ctx, operations.NatureReadRequest{
-        ID: 438601,
+        ID: 756843,
     })
     if err != nil {
         log.Fatal(err)

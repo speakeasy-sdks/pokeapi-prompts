@@ -1,4 +1,5 @@
 # PokemonHabitat
+(*PokemonHabitat*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.PokemonHabitat.PokemonHabitatList(ctx, operations.PokemonHabitatListRequest{
-        Limit: pokeapi.Int64(338007),
-        Offset: pokeapi.Int64(110375),
-    })
+    res, err := s.PokemonHabitat.PokemonHabitatList(ctx, operations.PokemonHabitatListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.PokemonHabitat.PokemonHabitatRead(ctx, operations.PokemonHabitatReadRequest{
-        ID: 674752,
+        ID: 809895,
     })
     if err != nil {
         log.Fatal(err)

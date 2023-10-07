@@ -1,4 +1,5 @@
 # ItemAttribute
+(*ItemAttribute*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.ItemAttribute.ItemAttributeList(ctx, operations.ItemAttributeListRequest{
-        Limit: pokeapi.Int64(758616),
-        Offset: pokeapi.Int64(521848),
-    })
+    res, err := s.ItemAttribute.ItemAttributeList(ctx, operations.ItemAttributeListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.ItemAttribute.ItemAttributeRead(ctx, operations.ItemAttributeReadRequest{
-        ID: 105907,
+        ID: 490327,
     })
     if err != nil {
         log.Fatal(err)

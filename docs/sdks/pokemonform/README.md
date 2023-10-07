@@ -1,4 +1,5 @@
 # PokemonForm
+(*PokemonForm*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.PokemonForm.PokemonFormList(ctx, operations.PokemonFormListRequest{
-        Limit: pokeapi.Int64(244425),
-        Offset: pokeapi.Int64(623510),
-    })
+    res, err := s.PokemonForm.PokemonFormList(ctx, operations.PokemonFormListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.PokemonForm.PokemonFormRead(ctx, operations.PokemonFormReadRequest{
-        ID: 158969,
+        ID: 612634,
     })
     if err != nil {
         log.Fatal(err)

@@ -1,4 +1,5 @@
 # Generation
+(*Generation*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.Generation.GenerationList(ctx, operations.GenerationListRequest{
-        Limit: pokeapi.Int64(780529),
-        Offset: pokeapi.Int64(678880),
-    })
+    res, err := s.Generation.GenerationList(ctx, operations.GenerationListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Generation.GenerationRead(ctx, operations.GenerationReadRequest{
-        ID: 118274,
+        ID: 869809,
     })
     if err != nil {
         log.Fatal(err)

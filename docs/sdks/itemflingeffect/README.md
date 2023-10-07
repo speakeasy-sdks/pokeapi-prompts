@@ -1,4 +1,5 @@
 # ItemFlingEffect
+(*ItemFlingEffect*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.ItemFlingEffect.ItemFlingEffectList(ctx, operations.ItemFlingEffectListRequest{
-        Limit: pokeapi.Int64(186332),
-        Offset: pokeapi.Int64(774234),
-    })
+    res, err := s.ItemFlingEffect.ItemFlingEffectList(ctx, operations.ItemFlingEffectListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.ItemFlingEffect.ItemFlingEffectRead(ctx, operations.ItemFlingEffectReadRequest{
-        ID: 736918,
+        ID: 714930,
     })
     if err != nil {
         log.Fatal(err)

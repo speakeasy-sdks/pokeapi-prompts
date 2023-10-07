@@ -1,4 +1,5 @@
 # ContestType
+(*ContestType*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.ContestType.ContestTypeList(ctx, operations.ContestTypeListRequest{
-        Limit: pokeapi.Int64(528895),
-        Offset: pokeapi.Int64(479977),
-    })
+    res, err := s.ContestType.ContestTypeList(ctx, operations.ContestTypeListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.ContestType.ContestTypeRead(ctx, operations.ContestTypeReadRequest{
-        ID: 568045,
+        ID: 890831,
     })
     if err != nil {
         log.Fatal(err)

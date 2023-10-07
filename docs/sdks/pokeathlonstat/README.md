@@ -1,4 +1,5 @@
 # PokeathlonStat
+(*PokeathlonStat*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.PokeathlonStat.PokeathlonStatList(ctx, operations.PokeathlonStatListRequest{
-        Limit: pokeapi.Int64(102044),
-        Offset: pokeapi.Int64(652790),
-    })
+    res, err := s.PokeathlonStat.PokeathlonStatList(ctx, operations.PokeathlonStatListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.PokeathlonStat.PokeathlonStatRead(ctx, operations.PokeathlonStatReadRequest{
-        ID: 208876,
+        ID: 193344,
     })
     if err != nil {
         log.Fatal(err)

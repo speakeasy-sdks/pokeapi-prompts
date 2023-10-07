@@ -1,4 +1,5 @@
 # PokemonSpecies
+(*PokemonSpecies*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.PokemonSpecies.PokemonSpeciesList(ctx, operations.PokemonSpeciesListRequest{
-        Limit: pokeapi.Int64(778346),
-        Offset: pokeapi.Int64(196582),
-    })
+    res, err := s.PokemonSpecies.PokemonSpeciesList(ctx, operations.PokemonSpeciesListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.PokemonSpecies.PokemonSpeciesRead(ctx, operations.PokemonSpeciesReadRequest{
-        ID: 949572,
+        ID: 144635,
     })
     if err != nil {
         log.Fatal(err)

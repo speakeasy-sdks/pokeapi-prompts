@@ -1,4 +1,5 @@
 # MoveTarget
+(*MoveTarget*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.MoveTarget.MoveTargetList(ctx, operations.MoveTargetListRequest{
-        Limit: pokeapi.Int64(607831),
-        Offset: pokeapi.Int64(363711),
-    })
+    res, err := s.MoveTarget.MoveTargetList(ctx, operations.MoveTargetListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.MoveTarget.MoveTargetRead(ctx, operations.MoveTargetReadRequest{
-        ID: 325047,
+        ID: 455703,
     })
     if err != nil {
         log.Fatal(err)

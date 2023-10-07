@@ -1,4 +1,5 @@
 # ItemCategory
+(*ItemCategory*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.ItemCategory.ItemCategoryList(ctx, operations.ItemCategoryListRequest{
-        Limit: pokeapi.Int64(414662),
-        Offset: pokeapi.Int64(473600),
-    })
+    res, err := s.ItemCategory.ItemCategoryList(ctx, operations.ItemCategoryListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.ItemCategory.ItemCategoryRead(ctx, operations.ItemCategoryReadRequest{
-        ID: 264555,
+        ID: 708802,
     })
     if err != nil {
         log.Fatal(err)

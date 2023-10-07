@@ -1,4 +1,5 @@
 # Characteristic
+(*Characteristic*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.Characteristic.CharacteristicList(ctx, operations.CharacteristicListRequest{
-        Limit: pokeapi.Int64(963663),
-        Offset: pokeapi.Int64(272656),
-    })
+    res, err := s.Characteristic.CharacteristicList(ctx, operations.CharacteristicListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Characteristic.CharacteristicRead(ctx, operations.CharacteristicReadRequest{
-        ID: 383441,
+        ID: 598761,
     })
     if err != nil {
         log.Fatal(err)

@@ -1,4 +1,5 @@
 # SuperContestEffect
+(*SuperContestEffect*)
 
 ### Available Operations
 
@@ -23,10 +24,7 @@ func main() {
     s := pokeapi.New()
 
     ctx := context.Background()
-    res, err := s.SuperContestEffect.SuperContestEffectList(ctx, operations.SuperContestEffectListRequest{
-        Limit: pokeapi.Int64(837945),
-        Offset: pokeapi.Int64(673660),
-    })
+    res, err := s.SuperContestEffect.SuperContestEffectList(ctx, operations.SuperContestEffectListRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -69,7 +67,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SuperContestEffect.SuperContestEffectRead(ctx, operations.SuperContestEffectReadRequest{
-        ID: 96098,
+        ID: 782099,
     })
     if err != nil {
         log.Fatal(err)
