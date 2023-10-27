@@ -2,22 +2,26 @@ configVersion: 1.0.0
 management:
   docChecksum: eccd893865ea28fe96f94317cd2e9fb9
   docVersion: 1.0.0
-  speakeasyVersion: 1.101.0
-  generationVersion: 2.161.0
+  speakeasyVersion: 1.108.1
+  generationVersion: 2.172.4
 generation:
   comments:
     disableComments: false
     omitDescriptionIfSummaryPresent: false
   baseServerURL: ""
+  repoURL: https://github.com/speakeasy-sdks/pokeapi-prompts.git
   sdkClassName: PokeAPI
   singleTagPerOp: false
   tagNamespacingDisabled: false
 features:
   go:
-    core: 2.91.5
+    core: 2.94.0
     globalServerURLs: 2.82.0
 go:
-  version: 1.4.1
+  version: 1.5.0
   flattenGlobalSecurity: true
+  installationURL: https://github.com/speakeasy-sdks/pokeapi-prompts
   maxMethodParams: 0
   packageName: PokeAPI
+  published: true
+  repoSubDirectory: .
