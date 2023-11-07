@@ -33,7 +33,7 @@ type MoveCategoryListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	MoveCategoryListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *MoveCategoryListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *MoveCategoryListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *MoveCategoryListResponse) GetMoveCategoryListDefaultTextPlainString() *string {
+func (o *MoveCategoryListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.MoveCategoryListDefaultTextPlainString
+	return o.Res
 }

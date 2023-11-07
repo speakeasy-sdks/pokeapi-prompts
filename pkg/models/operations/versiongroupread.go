@@ -25,7 +25,7 @@ type VersionGroupReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	VersionGroupReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *VersionGroupReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *VersionGroupReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *VersionGroupReadResponse) GetVersionGroupReadDefaultTextPlainString() *string {
+func (o *VersionGroupReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.VersionGroupReadDefaultTextPlainString
+	return o.Res
 }

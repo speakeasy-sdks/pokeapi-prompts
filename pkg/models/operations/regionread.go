@@ -25,7 +25,7 @@ type RegionReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	RegionReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *RegionReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *RegionReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *RegionReadResponse) GetRegionReadDefaultTextPlainString() *string {
+func (o *RegionReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.RegionReadDefaultTextPlainString
+	return o.Res
 }

@@ -25,7 +25,7 @@ type NatureReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	NatureReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *NatureReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *NatureReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *NatureReadResponse) GetNatureReadDefaultTextPlainString() *string {
+func (o *NatureReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.NatureReadDefaultTextPlainString
+	return o.Res
 }

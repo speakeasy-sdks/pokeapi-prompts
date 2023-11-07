@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type moveDamageClass struct {
+type MoveDamageClass struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newMoveDamageClass(sdkConfig sdkConfiguration) *moveDamageClass {
-	return &moveDamageClass{
+func newMoveDamageClass(sdkConfig sdkConfiguration) *MoveDamageClass {
+	return &MoveDamageClass{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *moveDamageClass) MoveDamageClassList(ctx context.Context, request operations.MoveDamageClassListRequest) (*operations.MoveDamageClassListResponse, error) {
+func (s *MoveDamageClass) MoveDamageClassList(ctx context.Context, request operations.MoveDamageClassListRequest) (*operations.MoveDamageClassListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/move-damage-class/"
 
@@ -64,11 +64,15 @@ func (s *moveDamageClass) MoveDamageClassList(ctx context.Context, request opera
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.MoveDamageClassListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *moveDamageClass) MoveDamageClassList(ctx context.Context, request opera
 	return res, nil
 }
 
-func (s *moveDamageClass) MoveDamageClassRead(ctx context.Context, request operations.MoveDamageClassReadRequest) (*operations.MoveDamageClassReadResponse, error) {
+func (s *MoveDamageClass) MoveDamageClassRead(ctx context.Context, request operations.MoveDamageClassReadRequest) (*operations.MoveDamageClassReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/move-damage-class/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *moveDamageClass) MoveDamageClassRead(ctx context.Context, request opera
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.MoveDamageClassReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type generation struct {
+type Generation struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newGeneration(sdkConfig sdkConfiguration) *generation {
-	return &generation{
+func newGeneration(sdkConfig sdkConfiguration) *Generation {
+	return &Generation{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *generation) GenerationList(ctx context.Context, request operations.GenerationListRequest) (*operations.GenerationListResponse, error) {
+func (s *Generation) GenerationList(ctx context.Context, request operations.GenerationListRequest) (*operations.GenerationListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/generation/"
 
@@ -64,11 +64,15 @@ func (s *generation) GenerationList(ctx context.Context, request operations.Gene
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.GenerationListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *generation) GenerationList(ctx context.Context, request operations.Gene
 	return res, nil
 }
 
-func (s *generation) GenerationRead(ctx context.Context, request operations.GenerationReadRequest) (*operations.GenerationReadResponse, error) {
+func (s *Generation) GenerationRead(ctx context.Context, request operations.GenerationReadRequest) (*operations.GenerationReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/generation/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *generation) GenerationRead(ctx context.Context, request operations.Gene
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.GenerationReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

@@ -33,7 +33,7 @@ type StatListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	StatListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *StatListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *StatListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *StatListResponse) GetStatListDefaultTextPlainString() *string {
+func (o *StatListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.StatListDefaultTextPlainString
+	return o.Res
 }

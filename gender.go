@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type gender struct {
+type Gender struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newGender(sdkConfig sdkConfiguration) *gender {
-	return &gender{
+func newGender(sdkConfig sdkConfiguration) *Gender {
+	return &Gender{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *gender) GenderList(ctx context.Context, request operations.GenderListRequest) (*operations.GenderListResponse, error) {
+func (s *Gender) GenderList(ctx context.Context, request operations.GenderListRequest) (*operations.GenderListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/gender/"
 
@@ -64,11 +64,15 @@ func (s *gender) GenderList(ctx context.Context, request operations.GenderListRe
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.GenderListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *gender) GenderList(ctx context.Context, request operations.GenderListRe
 	return res, nil
 }
 
-func (s *gender) GenderRead(ctx context.Context, request operations.GenderReadRequest) (*operations.GenderReadResponse, error) {
+func (s *Gender) GenderRead(ctx context.Context, request operations.GenderReadRequest) (*operations.GenderReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/gender/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *gender) GenderRead(ctx context.Context, request operations.GenderReadRe
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.GenderReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

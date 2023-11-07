@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type ability struct {
+type Ability struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAbility(sdkConfig sdkConfiguration) *ability {
-	return &ability{
+func newAbility(sdkConfig sdkConfiguration) *Ability {
+	return &Ability{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *ability) AbilityList(ctx context.Context, request operations.AbilityListRequest) (*operations.AbilityListResponse, error) {
+func (s *Ability) AbilityList(ctx context.Context, request operations.AbilityListRequest) (*operations.AbilityListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/ability/"
 
@@ -64,11 +64,15 @@ func (s *ability) AbilityList(ctx context.Context, request operations.AbilityLis
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.AbilityListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *ability) AbilityList(ctx context.Context, request operations.AbilityLis
 	return res, nil
 }
 
-func (s *ability) AbilityRead(ctx context.Context, request operations.AbilityReadRequest) (*operations.AbilityReadResponse, error) {
+func (s *Ability) AbilityRead(ctx context.Context, request operations.AbilityReadRequest) (*operations.AbilityReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/ability/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *ability) AbilityRead(ctx context.Context, request operations.AbilityRea
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.AbilityReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

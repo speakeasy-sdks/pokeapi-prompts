@@ -25,7 +25,7 @@ type CharacteristicReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	CharacteristicReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *CharacteristicReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *CharacteristicReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *CharacteristicReadResponse) GetCharacteristicReadDefaultTextPlainString() *string {
+func (o *CharacteristicReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.CharacteristicReadDefaultTextPlainString
+	return o.Res
 }

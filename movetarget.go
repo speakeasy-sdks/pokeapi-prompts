@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type moveTarget struct {
+type MoveTarget struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newMoveTarget(sdkConfig sdkConfiguration) *moveTarget {
-	return &moveTarget{
+func newMoveTarget(sdkConfig sdkConfiguration) *MoveTarget {
+	return &MoveTarget{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *moveTarget) MoveTargetList(ctx context.Context, request operations.MoveTargetListRequest) (*operations.MoveTargetListResponse, error) {
+func (s *MoveTarget) MoveTargetList(ctx context.Context, request operations.MoveTargetListRequest) (*operations.MoveTargetListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/move-target/"
 
@@ -64,11 +64,15 @@ func (s *moveTarget) MoveTargetList(ctx context.Context, request operations.Move
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.MoveTargetListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *moveTarget) MoveTargetList(ctx context.Context, request operations.Move
 	return res, nil
 }
 
-func (s *moveTarget) MoveTargetRead(ctx context.Context, request operations.MoveTargetReadRequest) (*operations.MoveTargetReadResponse, error) {
+func (s *MoveTarget) MoveTargetRead(ctx context.Context, request operations.MoveTargetReadRequest) (*operations.MoveTargetReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/move-target/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *moveTarget) MoveTargetRead(ctx context.Context, request operations.Move
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.MoveTargetReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

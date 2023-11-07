@@ -25,7 +25,7 @@ type PokemonColorReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	PokemonColorReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *PokemonColorReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *PokemonColorReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *PokemonColorReadResponse) GetPokemonColorReadDefaultTextPlainString() *string {
+func (o *PokemonColorReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.PokemonColorReadDefaultTextPlainString
+	return o.Res
 }

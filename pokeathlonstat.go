@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type pokeathlonStat struct {
+type PokeathlonStat struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPokeathlonStat(sdkConfig sdkConfiguration) *pokeathlonStat {
-	return &pokeathlonStat{
+func newPokeathlonStat(sdkConfig sdkConfiguration) *PokeathlonStat {
+	return &PokeathlonStat{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *pokeathlonStat) PokeathlonStatList(ctx context.Context, request operations.PokeathlonStatListRequest) (*operations.PokeathlonStatListResponse, error) {
+func (s *PokeathlonStat) PokeathlonStatList(ctx context.Context, request operations.PokeathlonStatListRequest) (*operations.PokeathlonStatListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/pokeathlon-stat/"
 
@@ -64,11 +64,15 @@ func (s *pokeathlonStat) PokeathlonStatList(ctx context.Context, request operati
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.PokeathlonStatListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *pokeathlonStat) PokeathlonStatList(ctx context.Context, request operati
 	return res, nil
 }
 
-func (s *pokeathlonStat) PokeathlonStatRead(ctx context.Context, request operations.PokeathlonStatReadRequest) (*operations.PokeathlonStatReadResponse, error) {
+func (s *PokeathlonStat) PokeathlonStatRead(ctx context.Context, request operations.PokeathlonStatReadRequest) (*operations.PokeathlonStatReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/pokeathlon-stat/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *pokeathlonStat) PokeathlonStatRead(ctx context.Context, request operati
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.PokeathlonStatReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

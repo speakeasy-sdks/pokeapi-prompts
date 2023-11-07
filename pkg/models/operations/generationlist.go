@@ -33,7 +33,7 @@ type GenerationListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	GenerationListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *GenerationListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *GenerationListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GenerationListResponse) GetGenerationListDefaultTextPlainString() *string {
+func (o *GenerationListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.GenerationListDefaultTextPlainString
+	return o.Res
 }

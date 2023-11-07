@@ -25,7 +25,7 @@ type SuperContestEffectReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	SuperContestEffectReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *SuperContestEffectReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *SuperContestEffectReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *SuperContestEffectReadResponse) GetSuperContestEffectReadDefaultTextPlainString() *string {
+func (o *SuperContestEffectReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.SuperContestEffectReadDefaultTextPlainString
+	return o.Res
 }

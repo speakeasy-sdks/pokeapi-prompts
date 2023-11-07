@@ -33,7 +33,7 @@ type BerryFlavorListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	BerryFlavorListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *BerryFlavorListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *BerryFlavorListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *BerryFlavorListResponse) GetBerryFlavorListDefaultTextPlainString() *string {
+func (o *BerryFlavorListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.BerryFlavorListDefaultTextPlainString
+	return o.Res
 }

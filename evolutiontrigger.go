@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type evolutionTrigger struct {
+type EvolutionTrigger struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newEvolutionTrigger(sdkConfig sdkConfiguration) *evolutionTrigger {
-	return &evolutionTrigger{
+func newEvolutionTrigger(sdkConfig sdkConfiguration) *EvolutionTrigger {
+	return &EvolutionTrigger{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *evolutionTrigger) EvolutionTriggerList(ctx context.Context, request operations.EvolutionTriggerListRequest) (*operations.EvolutionTriggerListResponse, error) {
+func (s *EvolutionTrigger) EvolutionTriggerList(ctx context.Context, request operations.EvolutionTriggerListRequest) (*operations.EvolutionTriggerListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/evolution-trigger/"
 
@@ -64,11 +64,15 @@ func (s *evolutionTrigger) EvolutionTriggerList(ctx context.Context, request ope
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.EvolutionTriggerListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *evolutionTrigger) EvolutionTriggerList(ctx context.Context, request ope
 	return res, nil
 }
 
-func (s *evolutionTrigger) EvolutionTriggerRead(ctx context.Context, request operations.EvolutionTriggerReadRequest) (*operations.EvolutionTriggerReadResponse, error) {
+func (s *EvolutionTrigger) EvolutionTriggerRead(ctx context.Context, request operations.EvolutionTriggerReadRequest) (*operations.EvolutionTriggerReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/evolution-trigger/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *evolutionTrigger) EvolutionTriggerRead(ctx context.Context, request ope
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.EvolutionTriggerReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

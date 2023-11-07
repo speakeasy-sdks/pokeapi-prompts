@@ -25,7 +25,7 @@ type PokedexReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	PokedexReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *PokedexReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *PokedexReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *PokedexReadResponse) GetPokedexReadDefaultTextPlainString() *string {
+func (o *PokedexReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.PokedexReadDefaultTextPlainString
+	return o.Res
 }

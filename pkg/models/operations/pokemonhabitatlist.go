@@ -33,7 +33,7 @@ type PokemonHabitatListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	PokemonHabitatListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *PokemonHabitatListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *PokemonHabitatListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *PokemonHabitatListResponse) GetPokemonHabitatListDefaultTextPlainString() *string {
+func (o *PokemonHabitatListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.PokemonHabitatListDefaultTextPlainString
+	return o.Res
 }

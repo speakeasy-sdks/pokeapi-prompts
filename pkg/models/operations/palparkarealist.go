@@ -33,7 +33,7 @@ type PalParkAreaListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	PalParkAreaListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *PalParkAreaListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *PalParkAreaListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *PalParkAreaListResponse) GetPalParkAreaListDefaultTextPlainString() *string {
+func (o *PalParkAreaListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.PalParkAreaListDefaultTextPlainString
+	return o.Res
 }

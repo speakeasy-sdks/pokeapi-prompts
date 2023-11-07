@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type location struct {
+type Location struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newLocation(sdkConfig sdkConfiguration) *location {
-	return &location{
+func newLocation(sdkConfig sdkConfiguration) *Location {
+	return &Location{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *location) LocationList(ctx context.Context, request operations.LocationListRequest) (*operations.LocationListResponse, error) {
+func (s *Location) LocationList(ctx context.Context, request operations.LocationListRequest) (*operations.LocationListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/location/"
 
@@ -64,11 +64,15 @@ func (s *location) LocationList(ctx context.Context, request operations.Location
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.LocationListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *location) LocationList(ctx context.Context, request operations.Location
 	return res, nil
 }
 
-func (s *location) LocationRead(ctx context.Context, request operations.LocationReadRequest) (*operations.LocationReadResponse, error) {
+func (s *Location) LocationRead(ctx context.Context, request operations.LocationReadRequest) (*operations.LocationReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/location/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *location) LocationRead(ctx context.Context, request operations.Location
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.LocationReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

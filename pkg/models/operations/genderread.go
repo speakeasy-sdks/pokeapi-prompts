@@ -25,7 +25,7 @@ type GenderReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	GenderReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *GenderReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *GenderReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GenderReadResponse) GetGenderReadDefaultTextPlainString() *string {
+func (o *GenderReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.GenderReadDefaultTextPlainString
+	return o.Res
 }

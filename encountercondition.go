@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type encounterCondition struct {
+type EncounterCondition struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newEncounterCondition(sdkConfig sdkConfiguration) *encounterCondition {
-	return &encounterCondition{
+func newEncounterCondition(sdkConfig sdkConfiguration) *EncounterCondition {
+	return &EncounterCondition{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *encounterCondition) EncounterConditionList(ctx context.Context, request operations.EncounterConditionListRequest) (*operations.EncounterConditionListResponse, error) {
+func (s *EncounterCondition) EncounterConditionList(ctx context.Context, request operations.EncounterConditionListRequest) (*operations.EncounterConditionListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/encounter-condition/"
 
@@ -64,11 +64,15 @@ func (s *encounterCondition) EncounterConditionList(ctx context.Context, request
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.EncounterConditionListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *encounterCondition) EncounterConditionList(ctx context.Context, request
 	return res, nil
 }
 
-func (s *encounterCondition) EncounterConditionRead(ctx context.Context, request operations.EncounterConditionReadRequest) (*operations.EncounterConditionReadResponse, error) {
+func (s *EncounterCondition) EncounterConditionRead(ctx context.Context, request operations.EncounterConditionReadRequest) (*operations.EncounterConditionReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/encounter-condition/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *encounterCondition) EncounterConditionRead(ctx context.Context, request
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.EncounterConditionReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

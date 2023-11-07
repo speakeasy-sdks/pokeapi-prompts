@@ -25,7 +25,7 @@ type EncounterConditionValueReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	EncounterConditionValueReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *EncounterConditionValueReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *EncounterConditionValueReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *EncounterConditionValueReadResponse) GetEncounterConditionValueReadDefaultTextPlainString() *string {
+func (o *EncounterConditionValueReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.EncounterConditionValueReadDefaultTextPlainString
+	return o.Res
 }

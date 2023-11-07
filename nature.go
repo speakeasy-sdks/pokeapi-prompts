@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type nature struct {
+type Nature struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newNature(sdkConfig sdkConfiguration) *nature {
-	return &nature{
+func newNature(sdkConfig sdkConfiguration) *Nature {
+	return &Nature{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *nature) NatureList(ctx context.Context, request operations.NatureListRequest) (*operations.NatureListResponse, error) {
+func (s *Nature) NatureList(ctx context.Context, request operations.NatureListRequest) (*operations.NatureListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/nature/"
 
@@ -64,11 +64,15 @@ func (s *nature) NatureList(ctx context.Context, request operations.NatureListRe
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.NatureListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *nature) NatureList(ctx context.Context, request operations.NatureListRe
 	return res, nil
 }
 
-func (s *nature) NatureRead(ctx context.Context, request operations.NatureReadRequest) (*operations.NatureReadResponse, error) {
+func (s *Nature) NatureRead(ctx context.Context, request operations.NatureReadRequest) (*operations.NatureReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/nature/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *nature) NatureRead(ctx context.Context, request operations.NatureReadRe
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.NatureReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

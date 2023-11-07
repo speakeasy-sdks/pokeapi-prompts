@@ -33,7 +33,7 @@ type NatureListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	NatureListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *NatureListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *NatureListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *NatureListResponse) GetNatureListDefaultTextPlainString() *string {
+func (o *NatureListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.NatureListDefaultTextPlainString
+	return o.Res
 }

@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type item struct {
+type Item struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newItem(sdkConfig sdkConfiguration) *item {
-	return &item{
+func newItem(sdkConfig sdkConfiguration) *Item {
+	return &Item{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *item) ItemList(ctx context.Context, request operations.ItemListRequest) (*operations.ItemListResponse, error) {
+func (s *Item) ItemList(ctx context.Context, request operations.ItemListRequest) (*operations.ItemListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/item/"
 
@@ -64,11 +64,15 @@ func (s *item) ItemList(ctx context.Context, request operations.ItemListRequest)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.ItemListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *item) ItemList(ctx context.Context, request operations.ItemListRequest)
 	return res, nil
 }
 
-func (s *item) ItemRead(ctx context.Context, request operations.ItemReadRequest) (*operations.ItemReadResponse, error) {
+func (s *Item) ItemRead(ctx context.Context, request operations.ItemReadRequest) (*operations.ItemReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/item/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *item) ItemRead(ctx context.Context, request operations.ItemReadRequest)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.ItemReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

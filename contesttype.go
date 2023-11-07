@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type contestType struct {
+type ContestType struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newContestType(sdkConfig sdkConfiguration) *contestType {
-	return &contestType{
+func newContestType(sdkConfig sdkConfiguration) *ContestType {
+	return &ContestType{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *contestType) ContestTypeList(ctx context.Context, request operations.ContestTypeListRequest) (*operations.ContestTypeListResponse, error) {
+func (s *ContestType) ContestTypeList(ctx context.Context, request operations.ContestTypeListRequest) (*operations.ContestTypeListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/contest-type/"
 
@@ -64,11 +64,15 @@ func (s *contestType) ContestTypeList(ctx context.Context, request operations.Co
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.ContestTypeListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *contestType) ContestTypeList(ctx context.Context, request operations.Co
 	return res, nil
 }
 
-func (s *contestType) ContestTypeRead(ctx context.Context, request operations.ContestTypeReadRequest) (*operations.ContestTypeReadResponse, error) {
+func (s *ContestType) ContestTypeRead(ctx context.Context, request operations.ContestTypeReadRequest) (*operations.ContestTypeReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/contest-type/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *contestType) ContestTypeRead(ctx context.Context, request operations.Co
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.ContestTypeReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

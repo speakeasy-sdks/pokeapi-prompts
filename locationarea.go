@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type locationArea struct {
+type LocationArea struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newLocationArea(sdkConfig sdkConfiguration) *locationArea {
-	return &locationArea{
+func newLocationArea(sdkConfig sdkConfiguration) *LocationArea {
+	return &LocationArea{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *locationArea) LocationAreaList(ctx context.Context, request operations.LocationAreaListRequest) (*operations.LocationAreaListResponse, error) {
+func (s *LocationArea) LocationAreaList(ctx context.Context, request operations.LocationAreaListRequest) (*operations.LocationAreaListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/location-area/"
 
@@ -64,11 +64,15 @@ func (s *locationArea) LocationAreaList(ctx context.Context, request operations.
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.LocationAreaListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *locationArea) LocationAreaList(ctx context.Context, request operations.
 	return res, nil
 }
 
-func (s *locationArea) LocationAreaRead(ctx context.Context, request operations.LocationAreaReadRequest) (*operations.LocationAreaReadResponse, error) {
+func (s *LocationArea) LocationAreaRead(ctx context.Context, request operations.LocationAreaReadRequest) (*operations.LocationAreaReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/location-area/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *locationArea) LocationAreaRead(ctx context.Context, request operations.
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.LocationAreaReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

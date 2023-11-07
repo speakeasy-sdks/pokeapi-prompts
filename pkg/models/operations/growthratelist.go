@@ -33,7 +33,7 @@ type GrowthRateListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	GrowthRateListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *GrowthRateListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *GrowthRateListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GrowthRateListResponse) GetGrowthRateListDefaultTextPlainString() *string {
+func (o *GrowthRateListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.GrowthRateListDefaultTextPlainString
+	return o.Res
 }

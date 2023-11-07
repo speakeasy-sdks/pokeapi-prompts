@@ -25,7 +25,7 @@ type LocationReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	LocationReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *LocationReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *LocationReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *LocationReadResponse) GetLocationReadDefaultTextPlainString() *string {
+func (o *LocationReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.LocationReadDefaultTextPlainString
+	return o.Res
 }

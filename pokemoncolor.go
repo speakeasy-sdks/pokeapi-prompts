@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type pokemonColor struct {
+type PokemonColor struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPokemonColor(sdkConfig sdkConfiguration) *pokemonColor {
-	return &pokemonColor{
+func newPokemonColor(sdkConfig sdkConfiguration) *PokemonColor {
+	return &PokemonColor{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *pokemonColor) PokemonColorList(ctx context.Context, request operations.PokemonColorListRequest) (*operations.PokemonColorListResponse, error) {
+func (s *PokemonColor) PokemonColorList(ctx context.Context, request operations.PokemonColorListRequest) (*operations.PokemonColorListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/pokemon-color/"
 
@@ -64,11 +64,15 @@ func (s *pokemonColor) PokemonColorList(ctx context.Context, request operations.
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.PokemonColorListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *pokemonColor) PokemonColorList(ctx context.Context, request operations.
 	return res, nil
 }
 
-func (s *pokemonColor) PokemonColorRead(ctx context.Context, request operations.PokemonColorReadRequest) (*operations.PokemonColorReadResponse, error) {
+func (s *PokemonColor) PokemonColorRead(ctx context.Context, request operations.PokemonColorReadRequest) (*operations.PokemonColorReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/pokemon-color/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *pokemonColor) PokemonColorRead(ctx context.Context, request operations.
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.PokemonColorReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

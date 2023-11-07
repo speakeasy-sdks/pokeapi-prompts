@@ -33,7 +33,7 @@ type ContestTypeListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	ContestTypeListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *ContestTypeListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *ContestTypeListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ContestTypeListResponse) GetContestTypeListDefaultTextPlainString() *string {
+func (o *ContestTypeListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.ContestTypeListDefaultTextPlainString
+	return o.Res
 }

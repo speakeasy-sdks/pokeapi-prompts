@@ -33,7 +33,7 @@ type MoveAilmentListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	MoveAilmentListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *MoveAilmentListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *MoveAilmentListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *MoveAilmentListResponse) GetMoveAilmentListDefaultTextPlainString() *string {
+func (o *MoveAilmentListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.MoveAilmentListDefaultTextPlainString
+	return o.Res
 }

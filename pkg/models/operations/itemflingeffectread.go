@@ -25,7 +25,7 @@ type ItemFlingEffectReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	ItemFlingEffectReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *ItemFlingEffectReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *ItemFlingEffectReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ItemFlingEffectReadResponse) GetItemFlingEffectReadDefaultTextPlainString() *string {
+func (o *ItemFlingEffectReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.ItemFlingEffectReadDefaultTextPlainString
+	return o.Res
 }

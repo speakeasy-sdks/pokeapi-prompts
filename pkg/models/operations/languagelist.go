@@ -33,7 +33,7 @@ type LanguageListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	LanguageListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *LanguageListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *LanguageListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *LanguageListResponse) GetLanguageListDefaultTextPlainString() *string {
+func (o *LanguageListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.LanguageListDefaultTextPlainString
+	return o.Res
 }

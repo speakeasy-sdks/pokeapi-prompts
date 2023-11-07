@@ -33,7 +33,7 @@ type ItemCategoryListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	ItemCategoryListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *ItemCategoryListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *ItemCategoryListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ItemCategoryListResponse) GetItemCategoryListDefaultTextPlainString() *string {
+func (o *ItemCategoryListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.ItemCategoryListDefaultTextPlainString
+	return o.Res
 }

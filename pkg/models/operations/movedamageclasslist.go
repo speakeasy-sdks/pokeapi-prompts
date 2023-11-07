@@ -33,7 +33,7 @@ type MoveDamageClassListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	MoveDamageClassListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *MoveDamageClassListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *MoveDamageClassListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *MoveDamageClassListResponse) GetMoveDamageClassListDefaultTextPlainString() *string {
+func (o *MoveDamageClassListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.MoveDamageClassListDefaultTextPlainString
+	return o.Res
 }

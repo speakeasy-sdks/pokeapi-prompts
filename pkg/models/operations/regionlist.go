@@ -33,7 +33,7 @@ type RegionListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	RegionListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *RegionListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *RegionListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *RegionListResponse) GetRegionListDefaultTextPlainString() *string {
+func (o *RegionListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.RegionListDefaultTextPlainString
+	return o.Res
 }

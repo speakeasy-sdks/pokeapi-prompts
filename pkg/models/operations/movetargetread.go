@@ -25,7 +25,7 @@ type MoveTargetReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	MoveTargetReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *MoveTargetReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *MoveTargetReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *MoveTargetReadResponse) GetMoveTargetReadDefaultTextPlainString() *string {
+func (o *MoveTargetReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.MoveTargetReadDefaultTextPlainString
+	return o.Res
 }

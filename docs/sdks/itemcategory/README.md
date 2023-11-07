@@ -1,5 +1,5 @@
 # ItemCategory
-(*ItemCategory*)
+(*.ItemCategory*)
 
 ### Available Operations
 
@@ -16,8 +16,8 @@ package main
 import(
 	"context"
 	"log"
-	pokeapi "PokeAPI"
-	"PokeAPI/pkg/models/operations"
+	pokeapi "PokeAPI/v2"
+	"PokeAPI/v2/pkg/models/operations"
 )
 
 func main() {
@@ -58,8 +58,8 @@ package main
 import(
 	"context"
 	"log"
-	pokeapi "PokeAPI"
-	"PokeAPI/pkg/models/operations"
+	pokeapi "PokeAPI/v2"
+	"PokeAPI/v2/pkg/models/operations"
 )
 
 func main() {

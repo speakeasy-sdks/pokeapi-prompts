@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type itemFlingEffect struct {
+type ItemFlingEffect struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newItemFlingEffect(sdkConfig sdkConfiguration) *itemFlingEffect {
-	return &itemFlingEffect{
+func newItemFlingEffect(sdkConfig sdkConfiguration) *ItemFlingEffect {
+	return &ItemFlingEffect{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *itemFlingEffect) ItemFlingEffectList(ctx context.Context, request operations.ItemFlingEffectListRequest) (*operations.ItemFlingEffectListResponse, error) {
+func (s *ItemFlingEffect) ItemFlingEffectList(ctx context.Context, request operations.ItemFlingEffectListRequest) (*operations.ItemFlingEffectListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/item-fling-effect/"
 
@@ -64,11 +64,15 @@ func (s *itemFlingEffect) ItemFlingEffectList(ctx context.Context, request opera
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.ItemFlingEffectListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *itemFlingEffect) ItemFlingEffectList(ctx context.Context, request opera
 	return res, nil
 }
 
-func (s *itemFlingEffect) ItemFlingEffectRead(ctx context.Context, request operations.ItemFlingEffectReadRequest) (*operations.ItemFlingEffectReadResponse, error) {
+func (s *ItemFlingEffect) ItemFlingEffectRead(ctx context.Context, request operations.ItemFlingEffectReadRequest) (*operations.ItemFlingEffectReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/item-fling-effect/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *itemFlingEffect) ItemFlingEffectRead(ctx context.Context, request opera
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.ItemFlingEffectReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

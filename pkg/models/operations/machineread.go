@@ -25,7 +25,7 @@ type MachineReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	MachineReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *MachineReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *MachineReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *MachineReadResponse) GetMachineReadDefaultTextPlainString() *string {
+func (o *MachineReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.MachineReadDefaultTextPlainString
+	return o.Res
 }

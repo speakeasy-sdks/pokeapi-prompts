@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type moveAilment struct {
+type MoveAilment struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newMoveAilment(sdkConfig sdkConfiguration) *moveAilment {
-	return &moveAilment{
+func newMoveAilment(sdkConfig sdkConfiguration) *MoveAilment {
+	return &MoveAilment{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *moveAilment) MoveAilmentList(ctx context.Context, request operations.MoveAilmentListRequest) (*operations.MoveAilmentListResponse, error) {
+func (s *MoveAilment) MoveAilmentList(ctx context.Context, request operations.MoveAilmentListRequest) (*operations.MoveAilmentListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/move-ailment/"
 
@@ -64,11 +64,15 @@ func (s *moveAilment) MoveAilmentList(ctx context.Context, request operations.Mo
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.MoveAilmentListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *moveAilment) MoveAilmentList(ctx context.Context, request operations.Mo
 	return res, nil
 }
 
-func (s *moveAilment) MoveAilmentRead(ctx context.Context, request operations.MoveAilmentReadRequest) (*operations.MoveAilmentReadResponse, error) {
+func (s *MoveAilment) MoveAilmentRead(ctx context.Context, request operations.MoveAilmentReadRequest) (*operations.MoveAilmentReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/move-ailment/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *moveAilment) MoveAilmentRead(ctx context.Context, request operations.Mo
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.MoveAilmentReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

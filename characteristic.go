@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type characteristic struct {
+type Characteristic struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newCharacteristic(sdkConfig sdkConfiguration) *characteristic {
-	return &characteristic{
+func newCharacteristic(sdkConfig sdkConfiguration) *Characteristic {
+	return &Characteristic{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *characteristic) CharacteristicList(ctx context.Context, request operations.CharacteristicListRequest) (*operations.CharacteristicListResponse, error) {
+func (s *Characteristic) CharacteristicList(ctx context.Context, request operations.CharacteristicListRequest) (*operations.CharacteristicListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/characteristic/"
 
@@ -64,11 +64,15 @@ func (s *characteristic) CharacteristicList(ctx context.Context, request operati
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.CharacteristicListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *characteristic) CharacteristicList(ctx context.Context, request operati
 	return res, nil
 }
 
-func (s *characteristic) CharacteristicRead(ctx context.Context, request operations.CharacteristicReadRequest) (*operations.CharacteristicReadResponse, error) {
+func (s *Characteristic) CharacteristicRead(ctx context.Context, request operations.CharacteristicReadRequest) (*operations.CharacteristicReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/characteristic/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *characteristic) CharacteristicRead(ctx context.Context, request operati
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.CharacteristicReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

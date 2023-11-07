@@ -33,7 +33,7 @@ type SuperContestEffectListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	SuperContestEffectListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *SuperContestEffectListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *SuperContestEffectListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *SuperContestEffectListResponse) GetSuperContestEffectListDefaultTextPlainString() *string {
+func (o *SuperContestEffectListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.SuperContestEffectListDefaultTextPlainString
+	return o.Res
 }

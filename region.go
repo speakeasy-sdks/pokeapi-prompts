@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type region struct {
+type Region struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newRegion(sdkConfig sdkConfiguration) *region {
-	return &region{
+func newRegion(sdkConfig sdkConfiguration) *Region {
+	return &Region{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *region) RegionList(ctx context.Context, request operations.RegionListRequest) (*operations.RegionListResponse, error) {
+func (s *Region) RegionList(ctx context.Context, request operations.RegionListRequest) (*operations.RegionListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/region/"
 
@@ -64,11 +64,15 @@ func (s *region) RegionList(ctx context.Context, request operations.RegionListRe
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.RegionListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *region) RegionList(ctx context.Context, request operations.RegionListRe
 	return res, nil
 }
 
-func (s *region) RegionRead(ctx context.Context, request operations.RegionReadRequest) (*operations.RegionReadResponse, error) {
+func (s *Region) RegionRead(ctx context.Context, request operations.RegionReadRequest) (*operations.RegionReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/region/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *region) RegionRead(ctx context.Context, request operations.RegionReadRe
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.RegionReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

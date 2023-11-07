@@ -33,7 +33,7 @@ type EvolutionChainListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	EvolutionChainListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *EvolutionChainListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *EvolutionChainListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *EvolutionChainListResponse) GetEvolutionChainListDefaultTextPlainString() *string {
+func (o *EvolutionChainListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.EvolutionChainListDefaultTextPlainString
+	return o.Res
 }

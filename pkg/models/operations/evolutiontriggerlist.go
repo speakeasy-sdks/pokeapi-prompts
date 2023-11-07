@@ -33,7 +33,7 @@ type EvolutionTriggerListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	EvolutionTriggerListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *EvolutionTriggerListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *EvolutionTriggerListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *EvolutionTriggerListResponse) GetEvolutionTriggerListDefaultTextPlainString() *string {
+func (o *EvolutionTriggerListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.EvolutionTriggerListDefaultTextPlainString
+	return o.Res
 }

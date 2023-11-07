@@ -33,7 +33,7 @@ type MoveBattleStyleListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	MoveBattleStyleListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *MoveBattleStyleListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *MoveBattleStyleListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *MoveBattleStyleListResponse) GetMoveBattleStyleListDefaultTextPlainString() *string {
+func (o *MoveBattleStyleListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.MoveBattleStyleListDefaultTextPlainString
+	return o.Res
 }

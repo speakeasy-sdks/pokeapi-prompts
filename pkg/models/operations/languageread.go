@@ -25,7 +25,7 @@ type LanguageReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	LanguageReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *LanguageReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *LanguageReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *LanguageReadResponse) GetLanguageReadDefaultTextPlainString() *string {
+func (o *LanguageReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.LanguageReadDefaultTextPlainString
+	return o.Res
 }

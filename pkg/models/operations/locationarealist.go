@@ -33,7 +33,7 @@ type LocationAreaListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	LocationAreaListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *LocationAreaListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *LocationAreaListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *LocationAreaListResponse) GetLocationAreaListDefaultTextPlainString() *string {
+func (o *LocationAreaListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.LocationAreaListDefaultTextPlainString
+	return o.Res
 }

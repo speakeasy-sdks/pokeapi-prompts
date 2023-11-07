@@ -25,7 +25,7 @@ type ItemCategoryReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	ItemCategoryReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *ItemCategoryReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *ItemCategoryReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ItemCategoryReadResponse) GetItemCategoryReadDefaultTextPlainString() *string {
+func (o *ItemCategoryReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.ItemCategoryReadDefaultTextPlainString
+	return o.Res
 }

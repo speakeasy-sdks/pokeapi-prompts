@@ -25,7 +25,7 @@ type ItemPocketReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	ItemPocketReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *ItemPocketReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *ItemPocketReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ItemPocketReadResponse) GetItemPocketReadDefaultTextPlainString() *string {
+func (o *ItemPocketReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.ItemPocketReadDefaultTextPlainString
+	return o.Res
 }

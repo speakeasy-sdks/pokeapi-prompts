@@ -33,7 +33,7 @@ type EncounterMethodListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	EncounterMethodListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *EncounterMethodListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *EncounterMethodListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *EncounterMethodListResponse) GetEncounterMethodListDefaultTextPlainString() *string {
+func (o *EncounterMethodListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.EncounterMethodListDefaultTextPlainString
+	return o.Res
 }

@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type version struct {
+type Version struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newVersion(sdkConfig sdkConfiguration) *version {
-	return &version{
+func newVersion(sdkConfig sdkConfiguration) *Version {
+	return &Version{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *version) VersionList(ctx context.Context, request operations.VersionListRequest) (*operations.VersionListResponse, error) {
+func (s *Version) VersionList(ctx context.Context, request operations.VersionListRequest) (*operations.VersionListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/version/"
 
@@ -64,11 +64,15 @@ func (s *version) VersionList(ctx context.Context, request operations.VersionLis
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.VersionListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *version) VersionList(ctx context.Context, request operations.VersionLis
 	return res, nil
 }
 
-func (s *version) VersionRead(ctx context.Context, request operations.VersionReadRequest) (*operations.VersionReadResponse, error) {
+func (s *Version) VersionRead(ctx context.Context, request operations.VersionReadRequest) (*operations.VersionReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/version/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *version) VersionRead(ctx context.Context, request operations.VersionRea
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.VersionReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

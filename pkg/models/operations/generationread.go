@@ -25,7 +25,7 @@ type GenerationReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	GenerationReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *GenerationReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *GenerationReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GenerationReadResponse) GetGenerationReadDefaultTextPlainString() *string {
+func (o *GenerationReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.GenerationReadDefaultTextPlainString
+	return o.Res
 }

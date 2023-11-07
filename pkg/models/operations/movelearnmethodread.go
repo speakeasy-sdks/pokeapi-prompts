@@ -25,7 +25,7 @@ type MoveLearnMethodReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	MoveLearnMethodReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *MoveLearnMethodReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *MoveLearnMethodReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *MoveLearnMethodReadResponse) GetMoveLearnMethodReadDefaultTextPlainString() *string {
+func (o *MoveLearnMethodReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.MoveLearnMethodReadDefaultTextPlainString
+	return o.Res
 }

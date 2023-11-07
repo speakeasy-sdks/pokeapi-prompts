@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type language struct {
+type Language struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newLanguage(sdkConfig sdkConfiguration) *language {
-	return &language{
+func newLanguage(sdkConfig sdkConfiguration) *Language {
+	return &Language{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *language) LanguageList(ctx context.Context, request operations.LanguageListRequest) (*operations.LanguageListResponse, error) {
+func (s *Language) LanguageList(ctx context.Context, request operations.LanguageListRequest) (*operations.LanguageListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/language/"
 
@@ -64,11 +64,15 @@ func (s *language) LanguageList(ctx context.Context, request operations.Language
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.LanguageListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *language) LanguageList(ctx context.Context, request operations.Language
 	return res, nil
 }
 
-func (s *language) LanguageRead(ctx context.Context, request operations.LanguageReadRequest) (*operations.LanguageReadResponse, error) {
+func (s *Language) LanguageRead(ctx context.Context, request operations.LanguageReadRequest) (*operations.LanguageReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/language/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *language) LanguageRead(ctx context.Context, request operations.Language
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.LanguageReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

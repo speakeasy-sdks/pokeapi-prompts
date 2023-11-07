@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type machine struct {
+type Machine struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newMachine(sdkConfig sdkConfiguration) *machine {
-	return &machine{
+func newMachine(sdkConfig sdkConfiguration) *Machine {
+	return &Machine{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *machine) MachineList(ctx context.Context, request operations.MachineListRequest) (*operations.MachineListResponse, error) {
+func (s *Machine) MachineList(ctx context.Context, request operations.MachineListRequest) (*operations.MachineListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/machine/"
 
@@ -64,11 +64,15 @@ func (s *machine) MachineList(ctx context.Context, request operations.MachineLis
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.MachineListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *machine) MachineList(ctx context.Context, request operations.MachineLis
 	return res, nil
 }
 
-func (s *machine) MachineRead(ctx context.Context, request operations.MachineReadRequest) (*operations.MachineReadResponse, error) {
+func (s *Machine) MachineRead(ctx context.Context, request operations.MachineReadRequest) (*operations.MachineReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/machine/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *machine) MachineRead(ctx context.Context, request operations.MachineRea
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.MachineReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

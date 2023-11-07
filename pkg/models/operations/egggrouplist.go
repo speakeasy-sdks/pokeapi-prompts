@@ -33,7 +33,7 @@ type EggGroupListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	EggGroupListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *EggGroupListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *EggGroupListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *EggGroupListResponse) GetEggGroupListDefaultTextPlainString() *string {
+func (o *EggGroupListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.EggGroupListDefaultTextPlainString
+	return o.Res
 }

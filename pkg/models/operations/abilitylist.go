@@ -33,7 +33,7 @@ type AbilityListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	AbilityListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *AbilityListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *AbilityListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *AbilityListResponse) GetAbilityListDefaultTextPlainString() *string {
+func (o *AbilityListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.AbilityListDefaultTextPlainString
+	return o.Res
 }

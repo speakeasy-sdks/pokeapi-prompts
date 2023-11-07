@@ -25,7 +25,7 @@ type BerryFirmnessReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	BerryFirmnessReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *BerryFirmnessReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *BerryFirmnessReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *BerryFirmnessReadResponse) GetBerryFirmnessReadDefaultTextPlainString() *string {
+func (o *BerryFirmnessReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.BerryFirmnessReadDefaultTextPlainString
+	return o.Res
 }

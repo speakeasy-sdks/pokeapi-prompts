@@ -33,7 +33,7 @@ type MachineListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	MachineListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *MachineListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *MachineListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *MachineListResponse) GetMachineListDefaultTextPlainString() *string {
+func (o *MachineListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.MachineListDefaultTextPlainString
+	return o.Res
 }

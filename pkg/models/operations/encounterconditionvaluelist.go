@@ -33,7 +33,7 @@ type EncounterConditionValueListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	EncounterConditionValueListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *EncounterConditionValueListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *EncounterConditionValueListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *EncounterConditionValueListResponse) GetEncounterConditionValueListDefaultTextPlainString() *string {
+func (o *EncounterConditionValueListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.EncounterConditionValueListDefaultTextPlainString
+	return o.Res
 }

@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type pokemonForm struct {
+type PokemonForm struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPokemonForm(sdkConfig sdkConfiguration) *pokemonForm {
-	return &pokemonForm{
+func newPokemonForm(sdkConfig sdkConfiguration) *PokemonForm {
+	return &PokemonForm{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *pokemonForm) PokemonFormList(ctx context.Context, request operations.PokemonFormListRequest) (*operations.PokemonFormListResponse, error) {
+func (s *PokemonForm) PokemonFormList(ctx context.Context, request operations.PokemonFormListRequest) (*operations.PokemonFormListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/pokemon-form/"
 
@@ -64,11 +64,15 @@ func (s *pokemonForm) PokemonFormList(ctx context.Context, request operations.Po
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.PokemonFormListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *pokemonForm) PokemonFormList(ctx context.Context, request operations.Po
 	return res, nil
 }
 
-func (s *pokemonForm) PokemonFormRead(ctx context.Context, request operations.PokemonFormReadRequest) (*operations.PokemonFormReadResponse, error) {
+func (s *PokemonForm) PokemonFormRead(ctx context.Context, request operations.PokemonFormReadRequest) (*operations.PokemonFormReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/pokemon-form/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *pokemonForm) PokemonFormRead(ctx context.Context, request operations.Po
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.PokemonFormReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

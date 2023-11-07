@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type moveBattleStyle struct {
+type MoveBattleStyle struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newMoveBattleStyle(sdkConfig sdkConfiguration) *moveBattleStyle {
-	return &moveBattleStyle{
+func newMoveBattleStyle(sdkConfig sdkConfiguration) *MoveBattleStyle {
+	return &MoveBattleStyle{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *moveBattleStyle) MoveBattleStyleList(ctx context.Context, request operations.MoveBattleStyleListRequest) (*operations.MoveBattleStyleListResponse, error) {
+func (s *MoveBattleStyle) MoveBattleStyleList(ctx context.Context, request operations.MoveBattleStyleListRequest) (*operations.MoveBattleStyleListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/move-battle-style/"
 
@@ -64,11 +64,15 @@ func (s *moveBattleStyle) MoveBattleStyleList(ctx context.Context, request opera
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.MoveBattleStyleListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *moveBattleStyle) MoveBattleStyleList(ctx context.Context, request opera
 	return res, nil
 }
 
-func (s *moveBattleStyle) MoveBattleStyleRead(ctx context.Context, request operations.MoveBattleStyleReadRequest) (*operations.MoveBattleStyleReadResponse, error) {
+func (s *MoveBattleStyle) MoveBattleStyleRead(ctx context.Context, request operations.MoveBattleStyleReadRequest) (*operations.MoveBattleStyleReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/move-battle-style/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *moveBattleStyle) MoveBattleStyleRead(ctx context.Context, request opera
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.MoveBattleStyleReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

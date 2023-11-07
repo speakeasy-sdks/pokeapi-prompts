@@ -25,7 +25,7 @@ type EvolutionChainReadResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	EvolutionChainReadDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *EvolutionChainReadResponse) GetContentType() string {
@@ -49,9 +49,9 @@ func (o *EvolutionChainReadResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *EvolutionChainReadResponse) GetEvolutionChainReadDefaultTextPlainString() *string {
+func (o *EvolutionChainReadResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.EvolutionChainReadDefaultTextPlainString
+	return o.Res
 }

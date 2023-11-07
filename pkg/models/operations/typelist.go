@@ -33,7 +33,7 @@ type TypeListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	TypeListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *TypeListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *TypeListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *TypeListResponse) GetTypeListDefaultTextPlainString() *string {
+func (o *TypeListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.TypeListDefaultTextPlainString
+	return o.Res
 }

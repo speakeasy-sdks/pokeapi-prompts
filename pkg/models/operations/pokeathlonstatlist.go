@@ -33,7 +33,7 @@ type PokeathlonStatListResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Default response
-	PokeathlonStatListDefaultTextPlainString *string
+	Res *string
 }
 
 func (o *PokeathlonStatListResponse) GetContentType() string {
@@ -57,9 +57,9 @@ func (o *PokeathlonStatListResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *PokeathlonStatListResponse) GetPokeathlonStatListDefaultTextPlainString() *string {
+func (o *PokeathlonStatListResponse) GetRes() *string {
 	if o == nil {
 		return nil
 	}
-	return o.PokeathlonStatListDefaultTextPlainString
+	return o.Res
 }

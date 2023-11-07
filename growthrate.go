@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/pkg/models/operations"
-	"PokeAPI/pkg/models/sdkerrors"
-	"PokeAPI/pkg/utils"
+	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v2/pkg/models/sdkerrors"
+	"PokeAPI/v2/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
@@ -14,17 +14,17 @@ import (
 	"strings"
 )
 
-type growthRate struct {
+type GrowthRate struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newGrowthRate(sdkConfig sdkConfiguration) *growthRate {
-	return &growthRate{
+func newGrowthRate(sdkConfig sdkConfiguration) *GrowthRate {
+	return &GrowthRate{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *growthRate) GrowthRateList(ctx context.Context, request operations.GrowthRateListRequest) (*operations.GrowthRateListResponse, error) {
+func (s *GrowthRate) GrowthRateList(ctx context.Context, request operations.GrowthRateListRequest) (*operations.GrowthRateListResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/growth-rate/"
 
@@ -64,11 +64,15 @@ func (s *growthRate) GrowthRateList(ctx context.Context, request operations.Grow
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.GrowthRateListDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -77,7 +81,7 @@ func (s *growthRate) GrowthRateList(ctx context.Context, request operations.Grow
 	return res, nil
 }
 
-func (s *growthRate) GrowthRateRead(ctx context.Context, request operations.GrowthRateReadRequest) (*operations.GrowthRateReadResponse, error) {
+func (s *GrowthRate) GrowthRateRead(ctx context.Context, request operations.GrowthRateReadRequest) (*operations.GrowthRateReadResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/growth-rate/{id}/", request, nil)
 	if err != nil {
@@ -116,11 +120,15 @@ func (s *growthRate) GrowthRateRead(ctx context.Context, request operations.Grow
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
 		switch {
 		case utils.MatchContentType(contentType, `text/plain`):
 			out := string(rawBody)
-			res.GrowthRateReadDefaultTextPlainString = &out
+			res.Res = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
