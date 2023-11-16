@@ -1,6 +1,4 @@
 <!-- Start SDK Example Usage -->
-
-
 ```go
 package main
 
@@ -9,6 +7,7 @@ import (
 	"PokeAPI/v2/pkg/models/operations"
 	"context"
 	"log"
+	"net/http"
 )
 
 func main() {

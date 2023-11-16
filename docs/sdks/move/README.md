@@ -14,10 +14,11 @@
 package main
 
 import(
-	"context"
-	"log"
 	pokeapi "PokeAPI/v2"
+	"context"
 	"PokeAPI/v2/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -58,10 +59,11 @@ func main() {
 package main
 
 import(
-	"context"
-	"log"
 	pokeapi "PokeAPI/v2"
+	"context"
 	"PokeAPI/v2/pkg/models/operations"
+	"log"
+	"net/http"
 )
 
 func main() {
