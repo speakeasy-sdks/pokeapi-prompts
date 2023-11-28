@@ -162,7 +162,6 @@ pkg/utils/utils.go
 /pkg/models/operations/versiongroupread.go
 /pkg/models/operations/versionlist.go
 /pkg/models/operations/versionread.go
-USAGE.md
 docs/pkg/models/operations/abilitylistrequest.md
 docs/pkg/models/operations/abilitylistresponse.md
 docs/pkg/models/operations/abilityreadrequest.md
@@ -404,4 +403,5 @@ docs/sdks/supercontesteffect/README.md
 docs/sdks/type/README.md
 docs/sdks/versiongroup/README.md
 docs/sdks/version/README.md
+USAGE.md
 .gitattributes
