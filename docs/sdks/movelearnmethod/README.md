@@ -49,7 +49,7 @@ func main() {
 **[*operations.MoveLearnMethodListResponse](../../pkg/models/operations/movelearnmethodlistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## MoveLearnMethodRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.MoveLearnMethodReadResponse](../../pkg/models/operations/movelearnmethodreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

@@ -49,7 +49,7 @@ func main() {
 **[*operations.PokemonHabitatListResponse](../../pkg/models/operations/pokemonhabitatlistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## PokemonHabitatRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.PokemonHabitatReadResponse](../../pkg/models/operations/pokemonhabitatreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

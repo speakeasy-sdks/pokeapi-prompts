@@ -49,7 +49,7 @@ func main() {
 **[*operations.ItemCategoryListResponse](../../pkg/models/operations/itemcategorylistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## ItemCategoryRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.ItemCategoryReadResponse](../../pkg/models/operations/itemcategoryreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

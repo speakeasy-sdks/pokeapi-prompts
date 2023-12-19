@@ -49,7 +49,7 @@ func main() {
 **[*operations.AbilityListResponse](../../pkg/models/operations/abilitylistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## AbilityRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.AbilityReadResponse](../../pkg/models/operations/abilityreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

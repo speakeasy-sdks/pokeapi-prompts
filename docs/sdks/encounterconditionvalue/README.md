@@ -49,7 +49,7 @@ func main() {
 **[*operations.EncounterConditionValueListResponse](../../pkg/models/operations/encounterconditionvaluelistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## EncounterConditionValueRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.EncounterConditionValueReadResponse](../../pkg/models/operations/encounterconditionvaluereadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

@@ -49,7 +49,7 @@ func main() {
 **[*operations.NatureListResponse](../../pkg/models/operations/naturelistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## NatureRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.NatureReadResponse](../../pkg/models/operations/naturereadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

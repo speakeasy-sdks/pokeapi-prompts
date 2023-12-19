@@ -49,7 +49,7 @@ func main() {
 **[*operations.GenerationListResponse](../../pkg/models/operations/generationlistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GenerationRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.GenerationReadResponse](../../pkg/models/operations/generationreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

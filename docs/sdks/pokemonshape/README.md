@@ -49,7 +49,7 @@ func main() {
 **[*operations.PokemonShapeListResponse](../../pkg/models/operations/pokemonshapelistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## PokemonShapeRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.PokemonShapeReadResponse](../../pkg/models/operations/pokemonshapereadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

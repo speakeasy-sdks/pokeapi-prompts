@@ -49,7 +49,7 @@ func main() {
 **[*operations.PalParkAreaListResponse](../../pkg/models/operations/palparkarealistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## PalParkAreaRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.PalParkAreaReadResponse](../../pkg/models/operations/palparkareareadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

@@ -49,7 +49,7 @@ func main() {
 **[*operations.SuperContestEffectListResponse](../../pkg/models/operations/supercontesteffectlistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## SuperContestEffectRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.SuperContestEffectReadResponse](../../pkg/models/operations/supercontesteffectreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

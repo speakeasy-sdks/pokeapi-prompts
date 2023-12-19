@@ -49,7 +49,7 @@ func main() {
 **[*operations.ContestTypeListResponse](../../pkg/models/operations/contesttypelistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## ContestTypeRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.ContestTypeReadResponse](../../pkg/models/operations/contesttypereadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

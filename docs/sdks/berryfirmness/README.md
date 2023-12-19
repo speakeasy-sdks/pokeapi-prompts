@@ -49,7 +49,7 @@ func main() {
 **[*operations.BerryFirmnessListResponse](../../pkg/models/operations/berryfirmnesslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## BerryFirmnessRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.BerryFirmnessReadResponse](../../pkg/models/operations/berryfirmnessreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

@@ -49,7 +49,7 @@ func main() {
 **[*operations.VersionGroupListResponse](../../pkg/models/operations/versiongrouplistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## VersionGroupRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.VersionGroupReadResponse](../../pkg/models/operations/versiongroupreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

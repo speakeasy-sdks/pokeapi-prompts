@@ -49,7 +49,7 @@ func main() {
 **[*operations.CharacteristicListResponse](../../pkg/models/operations/characteristiclistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## CharacteristicRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.CharacteristicReadResponse](../../pkg/models/operations/characteristicreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

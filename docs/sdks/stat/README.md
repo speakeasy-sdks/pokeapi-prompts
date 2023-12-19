@@ -49,7 +49,7 @@ func main() {
 **[*operations.StatListResponse](../../pkg/models/operations/statlistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## StatRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.StatReadResponse](../../pkg/models/operations/statreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

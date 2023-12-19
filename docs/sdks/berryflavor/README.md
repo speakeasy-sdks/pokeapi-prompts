@@ -49,7 +49,7 @@ func main() {
 **[*operations.BerryFlavorListResponse](../../pkg/models/operations/berryflavorlistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## BerryFlavorRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.BerryFlavorReadResponse](../../pkg/models/operations/berryflavorreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

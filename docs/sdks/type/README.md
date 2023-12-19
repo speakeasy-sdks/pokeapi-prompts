@@ -49,7 +49,7 @@ func main() {
 **[*operations.TypeListResponse](../../pkg/models/operations/typelistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## TypeRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.TypeReadResponse](../../pkg/models/operations/typereadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

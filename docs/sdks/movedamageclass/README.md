@@ -49,7 +49,7 @@ func main() {
 **[*operations.MoveDamageClassListResponse](../../pkg/models/operations/movedamageclasslistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## MoveDamageClassRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.MoveDamageClassReadResponse](../../pkg/models/operations/movedamageclassreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

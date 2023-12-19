@@ -49,7 +49,7 @@ func main() {
 **[*operations.EggGroupListResponse](../../pkg/models/operations/egggrouplistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## EggGroupRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.EggGroupReadResponse](../../pkg/models/operations/egggroupreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

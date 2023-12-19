@@ -49,7 +49,7 @@ func main() {
 **[*operations.LanguageListResponse](../../pkg/models/operations/languagelistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## LanguageRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.LanguageReadResponse](../../pkg/models/operations/languagereadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

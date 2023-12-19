@@ -49,7 +49,7 @@ func main() {
 **[*operations.ContestEffectListResponse](../../pkg/models/operations/contesteffectlistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## ContestEffectRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.ContestEffectReadResponse](../../pkg/models/operations/contesteffectreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

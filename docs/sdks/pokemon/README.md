@@ -49,7 +49,7 @@ func main() {
 **[*operations.PokemonListResponse](../../pkg/models/operations/pokemonlistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## PokemonRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.PokemonReadResponse](../../pkg/models/operations/pokemonreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

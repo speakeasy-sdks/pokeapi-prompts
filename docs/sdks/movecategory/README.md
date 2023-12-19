@@ -49,7 +49,7 @@ func main() {
 **[*operations.MoveCategoryListResponse](../../pkg/models/operations/movecategorylistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## MoveCategoryRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.MoveCategoryReadResponse](../../pkg/models/operations/movecategoryreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

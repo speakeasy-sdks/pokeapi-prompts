@@ -49,7 +49,7 @@ func main() {
 **[*operations.ItemPocketListResponse](../../pkg/models/operations/itempocketlistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## ItemPocketRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.ItemPocketReadResponse](../../pkg/models/operations/itempocketreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

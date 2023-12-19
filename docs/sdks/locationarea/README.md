@@ -49,7 +49,7 @@ func main() {
 **[*operations.LocationAreaListResponse](../../pkg/models/operations/locationarealistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## LocationAreaRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.LocationAreaReadResponse](../../pkg/models/operations/locationareareadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

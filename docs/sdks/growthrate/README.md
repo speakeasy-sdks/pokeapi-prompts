@@ -49,7 +49,7 @@ func main() {
 **[*operations.GrowthRateListResponse](../../pkg/models/operations/growthratelistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GrowthRateRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.GrowthRateReadResponse](../../pkg/models/operations/growthratereadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

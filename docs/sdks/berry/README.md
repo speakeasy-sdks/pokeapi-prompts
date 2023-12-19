@@ -49,7 +49,7 @@ func main() {
 **[*operations.BerryListResponse](../../pkg/models/operations/berrylistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## BerryRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.BerryReadResponse](../../pkg/models/operations/berryreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

@@ -49,7 +49,7 @@ func main() {
 **[*operations.MoveTargetListResponse](../../pkg/models/operations/movetargetlistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## MoveTargetRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.MoveTargetReadResponse](../../pkg/models/operations/movetargetreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

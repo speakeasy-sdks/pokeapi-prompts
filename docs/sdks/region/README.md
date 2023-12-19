@@ -49,7 +49,7 @@ func main() {
 **[*operations.RegionListResponse](../../pkg/models/operations/regionlistresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## RegionRead
 
@@ -96,4 +96,4 @@ func main() {
 **[*operations.RegionReadResponse](../../pkg/models/operations/regionreadresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
