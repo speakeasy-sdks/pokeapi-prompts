@@ -1,4 +1,4 @@
-module PokeAPI/v2
+module PokeAPI/v3
 
 go 1.20
 

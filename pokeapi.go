@@ -3,7 +3,7 @@
 package pokeapi
 
 import (
-	"PokeAPI/v2/pkg/utils"
+	"PokeAPI/v3/pkg/utils"
 	"fmt"
 	"net/http"
 	"time"
@@ -163,9 +163,9 @@ func New(opts ...SDKOption) *PokeAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "2.1.2",
-			GenVersion:        "2.237.2",
-			UserAgent:         "speakeasy-sdk/go 2.1.2 2.237.2 1.0.0 PokeAPI",
+			SDKVersion:        "3.0.0",
+			GenVersion:        "2.248.1",
+			UserAgent:         "speakeasy-sdk/go 3.0.0 2.248.1 1.0.0 PokeAPI",
 		},
 	}
 	for _, opt := range opts {

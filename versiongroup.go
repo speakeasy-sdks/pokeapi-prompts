@@ -3,9 +3,9 @@
 package pokeapi
 
 import (
-	"PokeAPI/v2/pkg/models/operations"
-	"PokeAPI/v2/pkg/models/sdkerrors"
-	"PokeAPI/v2/pkg/utils"
+	"PokeAPI/v3/pkg/models/operations"
+	"PokeAPI/v3/pkg/models/sdkerrors"
+	"PokeAPI/v3/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"

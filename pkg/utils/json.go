@@ -12,7 +12,7 @@ import (
 	"time"
 	"unsafe"
 
-	"PokeAPI/v2/pkg/types"
+	"PokeAPI/v3/pkg/types"
 
 	"github.com/ericlagergren/decimal"
 )

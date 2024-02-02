@@ -3,8 +3,8 @@
 package main
 
 import (
-	pokeapi "PokeAPI/v2"
-	"PokeAPI/v2/pkg/models/operations"
+	pokeapi "PokeAPI/v3"
+	"PokeAPI/v3/pkg/models/operations"
 	"context"
 	"log"
 	"net/http"

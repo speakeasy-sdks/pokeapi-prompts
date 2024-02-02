@@ -14,9 +14,9 @@
 package main
 
 import(
-	pokeapi "PokeAPI/v2"
+	pokeapi "PokeAPI/v3"
 	"context"
-	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v3/pkg/models/operations"
 	"log"
 	"net/http"
 )
@@ -59,9 +59,9 @@ func main() {
 package main
 
 import(
-	pokeapi "PokeAPI/v2"
+	pokeapi "PokeAPI/v3"
 	"context"
-	"PokeAPI/v2/pkg/models/operations"
+	"PokeAPI/v3/pkg/models/operations"
 	"log"
 	"net/http"
 )

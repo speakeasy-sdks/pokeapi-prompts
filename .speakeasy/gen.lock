@@ -4,9 +4,9 @@ management:
   docChecksum: eccd893865ea28fe96f94317cd2e9fb9
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.237.2
-  releaseVersion: 2.1.2
-  configChecksum: e8e829dde00dcedfebd6d53095215a6c
+  generationVersion: 2.248.1
+  releaseVersion: 3.0.0
+  configChecksum: c77a651cc25c5e35a864d6cc002d1398
   repoURL: https://github.com/speakeasy-sdks/pokeapi-prompts.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/pokeapi-prompts

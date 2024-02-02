@@ -17,8 +17,8 @@ go get github.com/speakeasy-sdks/pokeapi-prompts
 package main
 
 import (
-	pokeapi "PokeAPI/v2"
-	"PokeAPI/v2/pkg/models/operations"
+	pokeapi "PokeAPI/v3"
+	"PokeAPI/v3/pkg/models/operations"
 	"context"
 	"log"
 	"net/http"
@@ -314,9 +314,9 @@ Handling errors in this SDK should largely match your expectations.  All operati
 package main
 
 import (
-	pokeapi "PokeAPI/v2"
-	"PokeAPI/v2/pkg/models/operations"
-	"PokeAPI/v2/pkg/models/sdkerrors"
+	pokeapi "PokeAPI/v3"
+	"PokeAPI/v3/pkg/models/operations"
+	"PokeAPI/v3/pkg/models/sdkerrors"
 	"context"
 	"errors"
 	"log"
@@ -359,8 +359,8 @@ You can override the default server globally using the `WithServerIndex` option 
 package main
 
 import (
-	pokeapi "PokeAPI/v2"
-	"PokeAPI/v2/pkg/models/operations"
+	pokeapi "PokeAPI/v3"
+	"PokeAPI/v3/pkg/models/operations"
 	"context"
 	"log"
 	"net/http"
@@ -392,8 +392,8 @@ The default server can also be overridden globally using the `WithServerURL` opt
 package main
 
 import (
-	pokeapi "PokeAPI/v2"
-	"PokeAPI/v2/pkg/models/operations"
+	pokeapi "PokeAPI/v3"
+	"PokeAPI/v3/pkg/models/operations"
 	"context"
 	"log"
 	"net/http"
