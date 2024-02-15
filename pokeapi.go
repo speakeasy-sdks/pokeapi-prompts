@@ -3,6 +3,7 @@
 package pokeapi
 
 import (
+	"PokeAPI/v3/internal/hooks"
 	"PokeAPI/v3/pkg/utils"
 	"fmt"
 	"net/http"
@@ -49,6 +50,7 @@ type sdkConfiguration struct {
 	GenVersion        string
 	UserAgent         string
 	RetryConfig       *utils.RetryConfig
+	Hooks             *hooks.Hooks
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -163,14 +165,17 @@ func New(opts ...SDKOption) *PokeAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "3.0.1",
-			GenVersion:        "2.250.2",
-			UserAgent:         "speakeasy-sdk/go 3.0.1 2.250.2 1.0.0 PokeAPI",
+			SDKVersion:        "3.1.0",
+			GenVersion:        "2.258.0",
+			UserAgent:         "speakeasy-sdk/go 3.1.0 2.258.0 1.0.0 PokeAPI",
+			Hooks:             hooks.New(),
 		},
 	}
 	for _, opt := range opts {
 		opt(sdk)
 	}
+
+	sdk.sdkConfiguration.DefaultClient = sdk.sdkConfiguration.Hooks.ClientInit(sdk.sdkConfiguration.DefaultClient)
 
 	// Use WithClient to override the default client if you would like to customize the timeout
 	if sdk.sdkConfiguration.DefaultClient == nil {
