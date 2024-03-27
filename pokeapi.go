@@ -164,9 +164,9 @@ func New(opts ...SDKOption) *PokeAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "3.2.1",
-			GenVersion:        "2.280.6",
-			UserAgent:         "speakeasy-sdk/go 3.2.1 2.280.6 1.0.0 PokeAPI",
+			SDKVersion:        "3.2.2",
+			GenVersion:        "2.291.0",
+			UserAgent:         "speakeasy-sdk/go 3.2.2 2.291.0 1.0.0 PokeAPI",
 			Hooks:             hooks.New(),
 		},
 	}

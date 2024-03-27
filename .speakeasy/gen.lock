@@ -3,17 +3,17 @@ id: 082aad2e-b2be-4d29-823c-11169e6a9c33
 management:
   docChecksum: eccd893865ea28fe96f94317cd2e9fb9
   docVersion: 1.0.0
-  speakeasyVersion: 1.207.1
-  generationVersion: 2.280.6
-  releaseVersion: 3.2.1
-  configChecksum: dabf52cc23a57ae2fc7310d0399fe961
+  speakeasyVersion: 1.227.0
+  generationVersion: 2.291.0
+  releaseVersion: 3.2.2
+  configChecksum: 016c2efa6ae898ff9518b7a0542e2dc0
   repoURL: https://github.com/speakeasy-sdks/pokeapi-prompts.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/pokeapi-prompts
   published: true
 features:
   go:
-    core: 3.4.4
+    core: 3.4.5
     globalServerURLs: 2.82.2
     responseFormat: 0.1.0
 generatedFiles:

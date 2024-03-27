@@ -90,6 +90,7 @@ func (s *Version) VersionList(ctx context.Context, request operations.VersionLis
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
+	case httpRes.StatusCode >= 200 && httpRes.StatusCode < 300:
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
@@ -169,6 +170,7 @@ func (s *Version) VersionRead(ctx context.Context, request operations.VersionRea
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
+	case httpRes.StatusCode >= 200 && httpRes.StatusCode < 300:
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:

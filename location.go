@@ -90,6 +90,7 @@ func (s *Location) LocationList(ctx context.Context, request operations.Location
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
+	case httpRes.StatusCode >= 200 && httpRes.StatusCode < 300:
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
@@ -169,6 +170,7 @@ func (s *Location) LocationRead(ctx context.Context, request operations.Location
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
+	case httpRes.StatusCode >= 200 && httpRes.StatusCode < 300:
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:

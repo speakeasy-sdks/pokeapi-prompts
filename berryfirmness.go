@@ -90,6 +90,7 @@ func (s *BerryFirmness) BerryFirmnessList(ctx context.Context, request operation
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
+	case httpRes.StatusCode >= 200 && httpRes.StatusCode < 300:
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
@@ -169,6 +170,7 @@ func (s *BerryFirmness) BerryFirmnessRead(ctx context.Context, request operation
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
+	case httpRes.StatusCode >= 200 && httpRes.StatusCode < 300:
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:

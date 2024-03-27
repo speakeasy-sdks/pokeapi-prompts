@@ -90,6 +90,7 @@ func (s *MoveTarget) MoveTargetList(ctx context.Context, request operations.Move
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
+	case httpRes.StatusCode >= 200 && httpRes.StatusCode < 300:
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
@@ -169,6 +170,7 @@ func (s *MoveTarget) MoveTargetRead(ctx context.Context, request operations.Move
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
+	case httpRes.StatusCode >= 200 && httpRes.StatusCode < 300:
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:

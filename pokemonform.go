@@ -90,6 +90,7 @@ func (s *PokemonForm) PokemonFormList(ctx context.Context, request operations.Po
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
+	case httpRes.StatusCode >= 200 && httpRes.StatusCode < 300:
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
@@ -169,6 +170,7 @@ func (s *PokemonForm) PokemonFormRead(ctx context.Context, request operations.Po
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
+	case httpRes.StatusCode >= 200 && httpRes.StatusCode < 300:
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
